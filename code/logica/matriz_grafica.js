@@ -9,16 +9,34 @@ var cantidad_concreto=100;
 var matriz=new Array(dimensiones);
 var listaEnemigos=[];
 var vidas=3;
+var img_enemigo_down='imagenes/tank_down.bmp';
+var img_enemigo_up='imagenes/tank_up.bmp';
+var img_enemigo_left='imagenes/tank_left.bmp';
+var img_enemigo_right='imagenes/tank_right.bmp';
+var img_bloque_metal='imagenes/bloque_metal.png';
+var img_bloque_vacio='imagenes/bloque_vacio.jpg';
+var img_bloque_concreto='imagenes/bloque_concreto.png';
+var img_objetivo_torre='imagenes/objetivo_torre.png';
+var img_objetivo_nucleo='imagenes/primario_nucleo.png';
+var img_heroe_down='imagenes/heroe_down.png';
+var img_heroe_left='imagenes/heroe_left.png';
+var img_heroe_right='imagenes/heroe_right.png';
+var img_heroe_up='imagenes/heroe_up.png';
+var img_bala_down='imagenes/bala_down.png';
+var img_bala_left='imagenes/bala_left.png';
+var img_bala_right='imagenes/bala_right.png';
+var img_bala_up='imagenes/bala_up.png';
+
 function crearMurosMetal(){
     for (var x = 0; x< dimensiones; x++) {
         matriz[x] = new Array(dimensiones);
         for (var y = 0; y < dimensiones; y++) {
             if(y===0 || x===0 || y===19 || x===19){
-                var b_metal=new Bloque_metal('bm','imagenes/bloque_metal.png',true);
+                var b_metal=new Bloque_metal('bm',img_bloque_metal,true);
                 matriz[x][y] = b_metal;
             }
             else{
-                var b_vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                var b_vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                 matriz[x][y] = b_vacio;
             }
 
@@ -43,7 +61,7 @@ function colocarConcretoRandom(){
         {
             for (var j = 0; j < dimensiones; j++) {
                     if(x===i && y===j){
-                        var b_concreto=new Bloque_concreto('bc','imagenes/bloque_concreto.png',false);
+                        var b_concreto=new Bloque_concreto('bc',img_bloque_concreto,false);
                         matriz[x][y]=b_concreto;
                         contador=contador+1;
                 }
@@ -65,7 +83,7 @@ function colocarObjetivos(){
         {
             for (var j = 0; j < dimensiones; j++) {
                 if(x===i && y===j){
-                    var objetivo_primario=new Objetivo_primario('op','imagenes/objetivo_torre.png',false);
+                    var objetivo_primario=new Objetivo_primario('op',img_objetivo_torre,false);
                     matriz[x][y]=objetivo_primario;
                     contador=contador+1;
                 }
@@ -84,7 +102,7 @@ function colocarObjetivos(){
         {
             for (var j = 0; j < dimensiones; j++) {
                 if(x===i && y===j){
-                    var objetivo_primario=new Objetivo_primario('bc','imagenes/primario_nucleo.png',false);
+                    var objetivo_primario=new Objetivo_primario('bc',img_objetivo_nucleo,false);
                     matriz[x][y]=objetivo_primario;
                     contador=contador+1;
                 }
@@ -107,17 +125,17 @@ function colocarEnemigos(){
                 if(x===i && y===j){
                     var temp=generaRandom(1,3);
                     if(temp===1){
-                        var enemigo=new Tank1('t1',i,j,'imagenes/tank_down.bmp','r',true);
+                        var enemigo=new Tank1('t1',i,j,img_enemigo_down,'r',true);
                         matriz[x][y]=enemigo;
                         listaEnemigos.push(enemigo);
                     }
                     if(temp===2){
-                        var enemigo=new Tank2('t2',i,j,'imagenes/tank_down.bmp','c',true);
+                        var enemigo=new Tank2('t2',i,j,img_enemigo_down,'c',true);
                         matriz[x][y]=enemigo;
                         listaEnemigos.push(enemigo);
                     }
                     if(temp===3){
-                        var enemigo=new Tank3('t3',i,j,'imagenes/tank_down.bmp','b',true);
+                        var enemigo=new Tank3('t3',i,j,img_enemigo_down,'b',true);
                         matriz[x][y]=enemigo;
                         listaEnemigos.push(enemigo);
                     }
@@ -176,7 +194,7 @@ function limpiarBalas(){
     {
         for (var j = 0; j < dimensiones; j++){
             if(matriz[i][j].nombre==='b'){
-                var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                var vacio=new Bloque_vacio('va',img_bloque_concreto,false);
                 matriz[i][j]=vacio;
             }
         }
@@ -189,7 +207,7 @@ function iniciarJuego(){
     var brigth=true;
     var bup=true;
     var bdown=true;
-    var heroe_l=new Heroe('h',1,1,'imagenes/heroe_down.png','disparar',vidas);
+    var heroe_l=new Heroe('h',1,1,img_heroe_down,'disparar',vidas);
     matriz[px][py]=heroe_l;
     imprimirMatrizLogica();
     pintarPantalla();
@@ -199,10 +217,10 @@ function iniciarJuego(){
             var xtem=px;
             var ytem=py+1;
             if(validarMovimiento(xtem,ytem)){
-                var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                 matriz[px][py]=vacio;
                 py=py+1;
-                var heroet=new Heroe('h',px,py,'imagenes/heroe_right.png','disparar',vidas);
+                var heroet=new Heroe('h',px,py,img_heroe_right,'disparar',vidas);
                 matriz[px][py]=heroet;
                 bleft=false;
                 brigth=true;
@@ -215,10 +233,10 @@ function iniciarJuego(){
                 brigth=true;
                 bup=false;
                 bdown=false;
-                var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                 matriz[px][py]=vacio;
                 pintarPantalla();
-                var heroet=new Heroe('h',px,py,'imagenes/heroe_right.png','disparar',vidas);
+                var heroet=new Heroe('h',px,py,img_heroe_right,'disparar',vidas);
                 matriz[px][py]=heroet;
                 pintarPantalla();
             }
@@ -227,10 +245,10 @@ function iniciarJuego(){
             var xtem=px;
             var ytem=py-1;
             if(validarMovimiento(xtem,ytem)){
-                var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                 matriz[px][py]=vacio;
                 py=py-1;
-                var heroet=new Heroe('h',px,py,'imagenes/heroe_left.png','disparar',vidas);
+                var heroet=new Heroe('h',px,py,img_heroe_right,'disparar',vidas);
                 matriz[px][py]=heroet;
                 bleft=true;
                 brigth=false;
@@ -243,10 +261,10 @@ function iniciarJuego(){
                 brigth=false;
                 bup=false;
                 bdown=false;
-                var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                 matriz[px][py]=vacio;
                 pintarPantalla();
-                var heroet=new Heroe('h',px,py,'imagenes/heroe_left.png','disparar',vidas);
+                var heroet=new Heroe('h',px,py,img_heroe_left,'disparar',vidas);
                 matriz[px][py]=heroet;
                 pintarPantalla();
             }
@@ -255,10 +273,10 @@ function iniciarJuego(){
             var xtem=px+1;
             var ytem=py;
             if(validarMovimiento(xtem,ytem)){
-                var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                 matriz[px][py]=vacio;
                 px=px+1;
-                var heroet=new Heroe('h',px,py,'imagenes/heroe_down.png','disparar',vidas);
+                var heroet=new Heroe('h',px,py,img_heroe_down,'disparar',vidas);
                 matriz[px][py]=heroet;
                 bleft=false;
                 brigth=false;
@@ -271,10 +289,10 @@ function iniciarJuego(){
                 brigth=false;
                 bup=false;
                 bdown=true;
-                var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                 matriz[px][py]=vacio;
                 pintarPantalla();
-                var heroet=new Heroe('h',px,py,'imagenes/heroe_down.png','disparar',vidas);
+                var heroet=new Heroe('h',px,py,img_heroe_down,'disparar',vidas);
                 matriz[px][py]=heroet;
                 pintarPantalla();
             }
@@ -283,10 +301,10 @@ function iniciarJuego(){
             var xtem=px-1;
             var ytem=py;
             if(validarMovimiento(xtem,ytem)){
-                var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                 matriz[px][py]=vacio;
                 px=px-1;
-                var heroet=new Heroe('h',px,py,'imagenes/heroe_up.png','disparar',vidas);
+                var heroet=new Heroe('h',px,py,img_heroe_up,'disparar',vidas);
                 matriz[px][py]=heroet;
                 bleft=false;
                 brigth=false;
@@ -295,10 +313,10 @@ function iniciarJuego(){
                 imprimirMatrizLogica();
                 pintarPantalla();
             }else{
-                var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                 matriz[px][py]=vacio;
                 pintarPantalla();
-                var heroet=new Heroe('h',px,py,'imagenes/heroe_up.png','disparar',vidas);
+                var heroet=new Heroe('h',px,py,img_heroe_up,'disparar',vidas);
                 matriz[px][py]=heroet;
                 bleft=false;
                 brigth=false;
@@ -313,7 +331,7 @@ function iniciarJuego(){
                 var temx=px;
                 var tempy=py-1;
                 while(matriz[temx][tempy].nombre==='va'){
-                    var temp_bala=new Bala('b','imagenes/bala_left.png');
+                    var temp_bala=new Bala('b',img_bala_left);
                     matriz[temx][tempy]=temp_bala;
                     imprimirMatrizLogica();
                     pintarPantalla();
@@ -323,7 +341,7 @@ function iniciarJuego(){
                 limpiarBalas();
                 pintarPantalla();
                 if(validarDisparo(temx,tempy)){
-                    var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                    var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                     matriz[temx][tempy]=vacio;
                     imprimirMatrizLogica();
                     pintarPantalla();
@@ -333,7 +351,7 @@ function iniciarJuego(){
                 var temx=px;
                 var tempy=py+1;
                 while(matriz[temx][tempy].nombre==='va'){
-                    var temp_bala=new Bala('b','imagenes/bala_right.png');
+                    var temp_bala=new Bala('b',img_bala_right);
                     matriz[temx][tempy]=temp_bala;
                     imprimirMatrizLogica();
                     pintarPantalla();
@@ -343,7 +361,7 @@ function iniciarJuego(){
                 limpiarBalas();
                 pintarPantalla();
                 if(validarDisparo(temx,tempy)){
-                    var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                    var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                     matriz[temx][tempy]=vacio;
                     imprimirMatrizLogica();
                     pintarPantalla();
@@ -353,7 +371,7 @@ function iniciarJuego(){
                 var temx=px-1;
                 var tempy=py;
                 while(matriz[temx][tempy].nombre==='va'){
-                    var temp_bala=new Bala('b','imagenes/bala_up.png');
+                    var temp_bala=new Bala('b',img_bala_up);
                     matriz[temx][tempy]=temp_bala;
                     imprimirMatrizLogica();
                     pintarPantalla();
@@ -363,7 +381,7 @@ function iniciarJuego(){
                 limpiarBalas();
                 pintarPantalla();
                 if(validarDisparo(temx,tempy)){
-                    var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                    var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                     matriz[temx][tempy]=vacio;
                     imprimirMatrizLogica();
                     pintarPantalla();
@@ -373,7 +391,7 @@ function iniciarJuego(){
                 var temx=px+1;
                 var tempy=py;
                 while(matriz[temx][tempy].nombre==='va'){
-                    var temp_bala=new Bala('b','imagenes/bala_down.png');
+                    var temp_bala=new Bala('b',img_bala_down);
                     matriz[temx][tempy]=temp_bala;
                     imprimirMatrizLogica();
                     pintarPantalla();
@@ -383,7 +401,7 @@ function iniciarJuego(){
                 limpiarBalas();
                 pintarPantalla();
                 if(validarDisparo(temx,tempy)){
-                    var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                    var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                     matriz[temx][tempy]=vacio;
                     imprimirMatrizLogica();
                     pintarPantalla();
@@ -401,8 +419,9 @@ function MoverEnemigo(enemigo){
                 if(matriz[x-1][y].nombre==='va'){
                     enemigo.x=x-1;
                     enemigo.y=y;
-                    var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                    var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                     matriz[x][y]=vacio;
+                    enemigo.fondo=img_enemigo_up;
                     matriz[x-1][y]=enemigo;
                     pintarPantalla();
                 }
@@ -411,8 +430,9 @@ function MoverEnemigo(enemigo){
                 if(matriz[x+1][y].nombre==='va'){
                     enemigo.x=x+1;
                     enemigo.y=y;
-                    var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                    var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                     matriz[x][y]=vacio;
+                    enemigo.fondo=img_enemigo_up;
                     matriz[x+1][y]=enemigo;
                     pintarPantalla();
                 }
@@ -421,8 +441,9 @@ function MoverEnemigo(enemigo){
                 if(matriz[x][y+1].nombre==='va'){
                     enemigo.x=x;
                     enemigo.y=y+1;
-                    var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                    var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                     matriz[x][y]=vacio;
+                    enemigo.fondo=img_enemigo_right;
                     matriz[x][y+1]=enemigo;
                     pintarPantalla();
                 }
@@ -431,8 +452,9 @@ function MoverEnemigo(enemigo){
                 if(matriz[x][y-1].nombre==='va'){
                     enemigo.x=x;
                     enemigo.y=y-1;
-                    var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                    var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                     matriz[x][y]=vacio;
+                    enemigo.fondo=img_enemigo_left;
                     matriz[x][y-1]=enemigo;
                     pintarPantalla();
                 }
@@ -444,8 +466,9 @@ function MoverEnemigo(enemigo){
                         if(matriz[x-1][y].nombre==='va'){
                             enemigo.x=x-1;
                             enemigo.y=y;
-                            var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                            var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
+                            enemigo.fondo=img_enemigo_up;
                             matriz[x-1][y]=enemigo;
                         }
                     }
@@ -453,8 +476,9 @@ function MoverEnemigo(enemigo){
                         if(matriz[x][y+1].nombre==='va'){
                             enemigo.x=x;
                             enemigo.y=y+1;
-                            var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                            var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
+                            enemigo.fondo=img_enemigo_right;
                             matriz[x][y+1]=enemigo;
                         }
                     }
@@ -469,8 +493,9 @@ function MoverEnemigo(enemigo){
                         if(matriz[x+1][y].nombre==='va'){
                             enemigo.x=x+1;
                             enemigo.y=y;
-                            var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                            var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
+                            enemigo.fondo=img_enemigo_down;
                             matriz[x+1][y]=enemigo;
                         }
                     }
@@ -478,8 +503,9 @@ function MoverEnemigo(enemigo){
                         if(matriz[x][y-1].nombre==='va'){
                             enemigo.x=x;
                             enemigo.y=y-1;
-                            var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                            var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
+                            enemigo.fondo=img_enemigo_left;
                             matriz[x][y-1]=enemigo;
                         }
                     }
@@ -494,8 +520,9 @@ function MoverEnemigo(enemigo){
                         if(matriz[x+1][y].nombre==='va'){
                             enemigo.x=x+1;
                             enemigo.y=y;
-                            var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                            var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
+                            enemigo.fondo=img_enemigo_down;
                             matriz[x+1][y]=enemigo;
                         }
                     }
@@ -503,8 +530,9 @@ function MoverEnemigo(enemigo){
                         if(matriz[x-1][y].nombre==='va'){
                             enemigo.x=x-1;
                             enemigo.y=y;
-                            var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                            var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
+                            enemigo.fondo=img_enemigo_up;
                             matriz[x-1][y]=enemigo;
                         }
                     }
@@ -519,8 +547,9 @@ function MoverEnemigo(enemigo){
                         if(matriz[x][y+1].nombre==='va'){
                             enemigo.x=x;
                             enemigo.y=y+1;
-                            var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                            var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
+                            enemigo.fondo=img_enemigo_right;
                             matriz[x][y+1]=enemigo;
                         }
                     }
@@ -528,8 +557,9 @@ function MoverEnemigo(enemigo){
                         if(matriz[x][y-1].nombre==='va'){
                             enemigo.x=x;
                             enemigo.y=y-1;
-                            var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                            var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
+                            enemigo.fondo=img_enemigo_left;
                             matriz[x][y-1]=enemigo;
                         }
                     }
@@ -544,8 +574,9 @@ function MoverEnemigo(enemigo){
                         if(matriz[x-1][y].nombre==='va'){
                             enemigo.x=x-1;
                             enemigo.y=y;
-                            var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                            var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
+                            enemigo.fondo=img_enemigo_up;
                             matriz[x-1][y]=enemigo;
                         }
                     }
@@ -553,8 +584,9 @@ function MoverEnemigo(enemigo){
                         if(matriz[x][y-1].nombre==='va'){
                             enemigo.x=x;
                             enemigo.y=y-1;
-                            var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                            var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
+                            enemigo.fondo=img_enemigo_left;
                             matriz[x][y-1]=enemigo;
                         }
                     }
@@ -569,8 +601,9 @@ function MoverEnemigo(enemigo){
                         if(matriz[x+1][y].nombre==='va'){
                             enemigo.x=x+1;
                             enemigo.y=y;
-                            var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                            var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
+                            enemigo.fondo=img_enemigo_down;
                             matriz[x+1][y]=enemigo;
                         }
                     }
@@ -578,8 +611,9 @@ function MoverEnemigo(enemigo){
                         if(matriz[x][y+1].nombre==='va'){
                             enemigo.x=x;
                             enemigo.y=y+1;
-                            var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                            var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
+                            enemigo.fondo=img_enemigo_right;
                             matriz[x][y+1]=enemigo;
                         }
                     }
@@ -594,8 +628,9 @@ function MoverEnemigo(enemigo){
                     if(matriz[x+1][y].nombre==='va'){
                         enemigo.x=x+1;
                         enemigo.y=y;
-                        var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                        var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                         matriz[x][y]=vacio;
+                        enemigo.fondo=img_enemigo_down;
                         matriz[x+1][y]=enemigo;
                     }
                 }
@@ -603,8 +638,9 @@ function MoverEnemigo(enemigo){
                     if(matriz[x][y+1].nombre==='va'){
                         enemigo.x=x;
                         enemigo.y=y+1;
-                        var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                        var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                         matriz[x][y]=vacio;
+                        enemigo.fondo=img_enemigo_right;
                         matriz[x][y+1]=enemigo;
                     }
                 }
@@ -612,8 +648,9 @@ function MoverEnemigo(enemigo){
                     if(matriz[x-1][y].nombre==='va'){
                         enemigo.x=x-1;
                         enemigo.y=y;
-                        var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                        var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                         matriz[x][y]=vacio;
+                        enemigo.fondo=img_enemigo_up;
                         matriz[x-1][y]=enemigo;
                     }
                 }
@@ -627,8 +664,9 @@ function MoverEnemigo(enemigo){
                     if(matriz[x+1][y].nombre==='va'){
                         enemigo.x=x+1;
                         enemigo.y=y;
-                        var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                        var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                         matriz[x][y]=vacio;
+                        enemigo.fondo=img_enemigo_down;
                         matriz[x+1][y]=enemigo;
                     }
                 }
@@ -636,8 +674,9 @@ function MoverEnemigo(enemigo){
                     if(matriz[x][y+1].nombre==='va'){
                         enemigo.x=x;
                         enemigo.y=y+1;
-                        var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                        var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                         matriz[x][y]=vacio;
+                        enemigo.fondo=img_enemigo_right;
                         matriz[x][y+1]=enemigo;
                     }
                 }
@@ -645,8 +684,9 @@ function MoverEnemigo(enemigo){
                     if(matriz[x][y-1].nombre==='va'){
                         enemigo.x=x;
                         enemigo.y=y-1;
-                        var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                        var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                         matriz[x][y]=vacio;
+                        enemigo.fondo=img_enemigo_left;
                         matriz[x][y-1]=enemigo;
                     }
                 }
@@ -660,8 +700,9 @@ function MoverEnemigo(enemigo){
                     if(matriz[x+1][y].nombre==='va'){
                         enemigo.x=x+1;
                         enemigo.y=y;
-                        var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                        var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                         matriz[x][y]=vacio;
+                        enemigo.fondo=img_enemigo_down;
                         matriz[x+1][y]=enemigo;
                     }
                 }
@@ -669,8 +710,9 @@ function MoverEnemigo(enemigo){
                     if(matriz[x][y+1].nombre==='va'){
                         enemigo.x=x;
                         enemigo.y=y+1;
-                        var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                        var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                         matriz[x][y]=vacio;
+                        enemigo.fondo=img_enemigo_right;
                         matriz[x][y+1]=enemigo;
                     }
                 }
@@ -678,8 +720,9 @@ function MoverEnemigo(enemigo){
                     if(matriz[x][y-1].nombre==='va'){
                         enemigo.x=x;
                         enemigo.y=y-1;
-                        var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                        var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                         matriz[x][y]=vacio;
+                        enemigo.fondo=img_enemigo_left;
                         matriz[x][y-1]=enemigo;
                     }
                 }
@@ -693,8 +736,9 @@ function MoverEnemigo(enemigo){
                     if(matriz[x-1][y].nombre==='va'){
                         enemigo.x=x-1;
                         enemigo.y=y;
-                        var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                        var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                         matriz[x][y]=vacio;
+                        enemigo.fondo=img_enemigo_up;
                         matriz[x-1][y]=enemigo;
                     }
                 }
@@ -702,8 +746,9 @@ function MoverEnemigo(enemigo){
                     if(matriz[x][y+1].nombre==='va'){
                         enemigo.x=x;
                         enemigo.y=y+1;
-                        var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                        var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                         matriz[x][y]=vacio;
+                        enemigo.fondo=img_enemigo_right;
                         matriz[x][y+1]=enemigo;
                     }
                 }
@@ -711,8 +756,9 @@ function MoverEnemigo(enemigo){
                     if(matriz[x][y-1].nombre==='va'){
                         enemigo.x=x;
                         enemigo.y=y-1;
-                        var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                        var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                         matriz[x][y]=vacio;
+                        enemigo.fondo=img_enemigo_left;
                         matriz[x][y-1]=enemigo;
                     }
                 }
@@ -726,8 +772,9 @@ function MoverEnemigo(enemigo){
                     if(matriz[x-1][y].nombre==='va'){
                         enemigo.x=x-1;
                         enemigo.y=y;
-                        var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                        var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                         matriz[x][y]=vacio;
+                        enemigo.fondo=img_enemigo_up;
                         matriz[x-1][y]=enemigo;
                     }
                 }
@@ -735,8 +782,9 @@ function MoverEnemigo(enemigo){
                     if(matriz[x][y+1].nombre==='va'){
                         enemigo.x=x;
                         enemigo.y=y+1;
-                        var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                        var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                         matriz[x][y]=vacio;
+                        enemigo.fondo=img_enemigo_right;
                         matriz[x][y+1]=enemigo;
                     }
                 }
@@ -744,8 +792,9 @@ function MoverEnemigo(enemigo){
                     if(matriz[x][y-1].nombre==='va'){
                         enemigo.x=x;
                         enemigo.y=y-1;
-                        var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                        var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                         matriz[x][y]=vacio;
+                        enemigo.fondo=img_enemigo_left;
                         matriz[x][y-1]=enemigo;
                     }
                 }
@@ -753,8 +802,9 @@ function MoverEnemigo(enemigo){
                     if(matriz[x+1][y].nombre==='va'){
                         enemigo.x=x+1;
                         enemigo.y=y;
-                        var vacio=new Bloque_vacio('va','imagenes/bloque_vacio.jpg',false);
+                        var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                         matriz[x][y]=vacio;
+                        enemigo.fondo=img_enemigo_down;
                         matriz[x+1][y]=enemigo;
                     }
                 }
@@ -762,13 +812,9 @@ function MoverEnemigo(enemigo){
                 pintarPantalla();
             }
         }
-
-
-
 }
 function moverEnemigos(){
         for(var x=0;x<listaEnemigos.length;x++){
-            //MoverEnemigo(listaEnemigos[x]);
             Concurrent.Thread.create(MoverEnemigo, listaEnemigos[x]);
         }
 }
