@@ -3,15 +3,16 @@
  */
 class Tank2 extends Tank{
 
-    constructor(nombre, x, y, fondo, habilidad) {
-        super(nombre, x, y, fondo, habilidad);
+    constructor(nombre, x, y, fondo, habilidad, vivo) {
+        super(nombre, x, y, fondo, habilidad, vivo);
         this._nombre = nombre;
         this._x = x;
         this._y = y;
         this._fondo = fondo;
         this._habilidad = habilidad;
-
+        this._vivo = vivo;
     }
+
     get nombre() {
         return this._nombre;
     }
@@ -50,5 +51,13 @@ class Tank2 extends Tank{
 
     set habilidad(value) {
         this._habilidad = value;
+    }
+
+    get vivo() {
+        return this._vivo;
+    }
+
+    set vivo(value) {
+        this._vivo = value;
     }
 }

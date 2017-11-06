@@ -2,14 +2,15 @@
  * Created by Andres on 11/4/2017.
  */
 class Tank1 extends Tank{
-    constructor(nombre, x, y, fondo, habilidad) {
-        super(nombre, x, y, fondo, habilidad);
+
+    constructor(nombre, x, y, fondo, habilidad, vivo) {
+        super(nombre, x, y, fondo, habilidad, vivo);
         this._nombre = nombre;
         this._x = x;
         this._y = y;
         this._fondo = fondo;
         this._habilidad = habilidad;
-
+        this._vivo = vivo;
     }
     get nombre() {
         return this._nombre;
@@ -22,12 +23,11 @@ class Tank1 extends Tank{
     get x() {
         return this._x;
     }
-
     set x(value) {
         this._x = value;
     }
 
-    get y() {
+    get y(){
         return this._y;
     }
 
@@ -51,5 +51,11 @@ class Tank1 extends Tank{
         this._habilidad = value;
     }
 
+    get vivo() {
+        return this._vivo;
+    }
 
+    set vivo(value) {
+        this._vivo = value;
+    }
 }
