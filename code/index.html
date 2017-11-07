@@ -2,9 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Prueba</title>
+    <title>Tanks war TEC</title>
+    <style rel="stylesheet">
+        .b_inicio{
+            width: 300px;
+            height: 100px;
+            font-weight: 900;
+            solid-color: black;
+            background-color: white;
+            border-color: black;
+            border-bottom-width: 5px;
+        }
+        
+    </style>
 </head>
 <body>
+    <script>
+        function iniciarJuego() {
+            window.location.href='matriz.html';
+        }
+    </script>
 
+    <div style="text-align: center; margin-top:  1%;height: 200px;padding: 100px">
+        <img src="imagenes/inicio.png">
+    </div>
+    <div style="text-align: center; margin-top:  5%;">
+        <button  class="b_inicio" onclick="iniciarJuego()"><i>JUGAR</i></button>
+    </div>
 </body>
 </html>
