@@ -982,7 +982,6 @@ function moverEnemigos(){
             Concurrent.Thread.create(MoverEnemigo, listaEnemigos[x]);
         }
 }
-
 //Funcion que se encarga de colocar los enemigos en el terreno de juego
 function colocarEnemigos(){
     var contador=0;
@@ -1019,7 +1018,7 @@ function colocarEnemigos(){
         }
     }
     moverEnemigos();
-    timer=setTimeout(colocarEnemigos,60000);
+    timer=setTimeout(colocarEnemigos,30000);
 }
 //Funcion que ejecuta el nivel 1
 function nivel2(){
@@ -1205,7 +1204,6 @@ function iniciarJuego(){
                         if(objetivos_primarios===0){
                             alert("Has ganado el nivel "+nivel);
                             if(nivel===1){
-                                nivel=nivel+1;
                                 matarProcesos();
                                 dimensiones=20;
                                 objetivos_nucleo=1;
@@ -1217,10 +1215,10 @@ function iniciarJuego(){
                                 vidas=3;
                                 vida=100;
                                 clearTimeout(timer);
+                                nivel=nivel+1;
                                 nivel2();
                             }
                             else if(nivel===2){
-                                nivel=nivel+1;
                                 matarProcesos();
                                 dimensiones=20;
                                 objetivos_nucleo=1;
@@ -1232,10 +1230,12 @@ function iniciarJuego(){
                                 vidas=3;
                                 vida=100;
                                 clearTimeout(timer);
+                                nivel=nivel+1;
                                 nivel3();
                             }
                             else if(nivel===3){
                                 alert("Has ganado el juego felicidades");
+                                window.location.href='index.html';
                             }
                         }
                     }
@@ -1245,7 +1245,6 @@ function iniciarJuego(){
                         if(objetivos_primarios===0){
                             alert("Has ganado el nivel "+nivel);
                             if(nivel===1){
-                                nivel=nivel+1;
                                 matarProcesos();
                                 dimensiones=20;
                                 objetivos_nucleo=1;
@@ -1257,10 +1256,10 @@ function iniciarJuego(){
                                 vidas=3;
                                 vida=100;
                                 clearTimeout(timer);
+                                nivel=nivel+1;
                                 nivel2();
                             }
                             else if(nivel===2){
-                                nivel=nivel+1;
                                 matarProcesos();
                                 dimensiones=20;
                                 objetivos_nucleo=1;
@@ -1272,10 +1271,12 @@ function iniciarJuego(){
                                 vidas=3;
                                 vida=100;
                                 clearTimeout(timer);
+                                nivel=nivel+1;
                                 nivel3();
                             }
                             else if(nivel===3){
                                 alert("Has ganado el juego felicidades");
+                                window.location.href='index.html';
                             }
                         }
                     }
@@ -1306,7 +1307,6 @@ function iniciarJuego(){
                         if(objetivos_primarios===0){
                             alert("Has ganado el nivel "+nivel);
                             if(nivel===1){
-                                nivel=nivel+1;
                                 matarProcesos();
                                 dimensiones=20;
                                 objetivos_nucleo=1;
@@ -1318,10 +1318,10 @@ function iniciarJuego(){
                                 vidas=3;
                                 vida=100;
                                 clearTimeout(timer);
+                                nivel=nivel+1;
                                 nivel2();
                             }
                             else if(nivel===2){
-                                nivel=nivel+1;
                                 matarProcesos();
                                 dimensiones=20;
                                 objetivos_nucleo=1;
@@ -1333,10 +1333,12 @@ function iniciarJuego(){
                                 vidas=3;
                                 vida=100;
                                 clearTimeout(timer);
+                                nivel=nivel+1;
                                 nivel3();
                             }
                             else if(nivel===3){
                                 alert("Has ganado el juego felicidades");
+                                window.location.href='index.html';
                             }
                         }
                     }
@@ -1346,7 +1348,6 @@ function iniciarJuego(){
                         if(objetivos_primarios===0){
                             alert("Has ganado el nivel "+nivel);
                             if(nivel===1){
-                                nivel=nivel+1;
                                 matarProcesos();
                                 dimensiones=20;
                                 objetivos_nucleo=1;
@@ -1358,10 +1359,10 @@ function iniciarJuego(){
                                 vidas=3;
                                 vida=100;
                                 clearTimeout(timer);
+                                nivel=nivel+1;
                                 nivel2();
                             }
                             else if(nivel===2){
-                                nivel=nivel+1;
                                 matarProcesos();
                                 dimensiones=20;
                                 objetivos_nucleo=1;
@@ -1373,10 +1374,12 @@ function iniciarJuego(){
                                 vidas=3;
                                 vida=100;
                                 clearTimeout(timer);
+                                nivel=nivel+1;
                                 nivel3();
                             }
                             else if(nivel===3){
                                 alert("Has ganado el juego felicidades");
+                                window.location.href='index.html';
                             }
                         }
                     }
@@ -1407,7 +1410,6 @@ function iniciarJuego(){
                         if(objetivos_primarios===0){
                             alert("Has ganado el nivel "+nivel);
                             if(nivel===1){
-                                nivel=nivel+1;
                                 matarProcesos();
                                 dimensiones=20;
                                 objetivos_nucleo=1;
@@ -1419,10 +1421,10 @@ function iniciarJuego(){
                                 vidas=3;
                                 vida=100;
                                 clearTimeout(timer);
+                                nivel=nivel+1;
                                 nivel2();
                             }
                             else if(nivel===2){
-                                nivel=nivel+1;
                                 matarProcesos();
                                 dimensiones=20;
                                 objetivos_nucleo=1;
@@ -1434,10 +1436,14 @@ function iniciarJuego(){
                                 vidas=3;
                                 vida=100;
                                 clearTimeout(timer);
+                                nivel=nivel+1;
                                 nivel3();
                             }
                             else if(nivel===3){
+
                                 alert("Has ganado el juego felicidades");
+                                window.location.href='index.html';
+
                             }
                         }
                     }
@@ -1447,7 +1453,6 @@ function iniciarJuego(){
                         if(objetivos_primarios===0){
                             alert("Has ganado el nivel "+nivel);
                             if(nivel===1){
-                                nivel=nivel+1;
                                 matarProcesos();
                                 dimensiones=20;
                                 objetivos_nucleo=1;
@@ -1459,10 +1464,10 @@ function iniciarJuego(){
                                 vidas=3;
                                 vida=100;
                                 clearTimeout(timer);
+                                nivel=nivel+1;
                                 nivel2();
                             }
                             else if(nivel===2){
-                                nivel=nivel+1;
                                 matarProcesos();
                                 dimensiones=20;
                                 objetivos_nucleo=1;
@@ -1474,10 +1479,12 @@ function iniciarJuego(){
                                 vidas=3;
                                 vida=100;
                                 clearTimeout(timer);
+                                nivel=nivel+1;
                                 nivel3();
                             }
                             else if(nivel===3){
                                 alert("Has ganado el juego felicidades");
+                                window.location.href='index.html';
                             }
                         }
                     }
@@ -1508,7 +1515,6 @@ function iniciarJuego(){
                         if(objetivos_primarios===0){
                             alert("Has ganado el nivel "+nivel);
                             if(nivel===1){
-                                nivel=nivel+1;
                                 matarProcesos();
                                 dimensiones=20;
                                 objetivos_nucleo=1;
@@ -1520,10 +1526,10 @@ function iniciarJuego(){
                                 vidas=3;
                                 vida=100;
                                 clearTimeout(timer);
+                                nivel=nivel+1;
                                 nivel2();
                             }
                             else if(nivel===2){
-                                nivel=nivel+1;
                                 matarProcesos();
                                 dimensiones=20;
                                 objetivos_nucleo=1;
@@ -1535,10 +1541,12 @@ function iniciarJuego(){
                                 vidas=3;
                                 vida=100;
                                 clearTimeout(timer);
+                                nivel=nivel+1;
                                 nivel3();
                             }
                             else if(nivel===3){
                                 alert("Has ganado el juego felicidades");
+                                window.location.href='index.html';
                             }
                         }
                     }
@@ -1549,7 +1557,6 @@ function iniciarJuego(){
                             alert("Has ganado el nivel "+nivel);
                             alert("Has ganado el nivel "+nivel);
                             if(nivel===1){
-                                nivel=nivel+1;
                                 matarProcesos();
                                 dimensiones=20;
                                 objetivos_nucleo=1;
@@ -1561,10 +1568,10 @@ function iniciarJuego(){
                                 vidas=3;
                                 vida=100;
                                 clearTimeout(timer);
+                                nivel=nivel+1;
                                 nivel2();
                             }
                             else if(nivel===2){
-                                nivel=nivel+1;
                                 matarProcesos();
                                 dimensiones=20;
                                 objetivos_nucleo=1;
@@ -1576,10 +1583,12 @@ function iniciarJuego(){
                                 vidas=3;
                                 vida=100;
                                 clearTimeout(timer);
+                                nivel=nivel+1;
                                 nivel3();
                             }
                             else if(nivel===3){
                                 alert("Has ganado el juego felicidades");
+                                window.location.href='index.html';
                             }
                         }
                     }
