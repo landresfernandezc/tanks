@@ -11,6 +11,7 @@ var listaEnemigos=[];
 var vidas=3;
 var vida=100;
 var nivel=1;
+var timer;
 var img_enemigo_down='imagenes/tank_down.bmp';
 var img_enemigo_up='imagenes/tank_up.bmp';
 var img_enemigo_left='imagenes/tank_left.bmp';
@@ -908,6 +909,7 @@ function moverEnemigos(){
             Concurrent.Thread.create(MoverEnemigo, listaEnemigos[x]);
         }
 }
+
 //Funcion que se encarga de colocar los enemigos en el terreno de juego
 function colocarEnemigos(){
     var contador=0;
@@ -944,7 +946,7 @@ function colocarEnemigos(){
         }
     }
     moverEnemigos();
-    setTimeout(colocarEnemigos,60000);
+    timer=setTimeout(colocarEnemigos,60000);
 }
 //Funcion que ejecuta el nivel 1
 function nivel2(){
@@ -955,7 +957,6 @@ function nivel2(){
     colocarObjetivos();
     colocarEnemigos();
     iniciarJuego();
-    setTimeout(colocarEnemigos,60000);
 }
 //Funcion que ejecuta el nivel 1
 function nivel3(){
@@ -966,7 +967,21 @@ function nivel3(){
     colocarObjetivos();
     colocarEnemigos();
     iniciarJuego();
-    setTimeout(colocarEnemigos,60000);
+}
+function matarProcesos(){
+    for(var x=0;x<dimensiones;x++){
+        for(var y=0;y<dimensiones;y++){
+            if(matriz[x][y].nombre==='t1'){
+                matriz[x][y].vivo=false;
+            }
+            if(matriz[x][y].nombre==='t2'){
+                matriz[x][y].vivo=false;
+            }
+            if(matriz[x][y].nombre==='t3'){
+                matriz[x][y].vivo=false;
+            }
+        }
+    }
 }
 //Funcion que se encarga de iniciar el juego del heroe
 function iniciarJuego(){
@@ -1101,7 +1116,6 @@ function iniciarJuego(){
                     var temp_bala=new Bala('b',img_bala_left);
                     matriz[temx][tempy]=temp_bala;
                     pintarPantalla();
-                    // doDelay(10);
                     tempy=tempy-1;
                 }
                 limpiarBalas();
@@ -1117,17 +1131,35 @@ function iniciarJuego(){
                             alert("Has ganado el nivel "+nivel);
                             if(nivel===1){
                                 nivel=nivel+1;
+                                matarProcesos();
+                                dimensiones=20;
+                                objetivos_nucleo=1;
+                                objetivos_torres=2;
+                                enemigos=6;
+                                cantidad_concreto=100;
+                                matriz=new Array(dimensiones);
+                                listaEnemigos=[];
                                 vidas=3;
                                 vida=100;
+                                clearTimeout(timer);
                                 nivel2();
                             }
-                            if(nivel===2){
+                            else if(nivel===2){
                                 nivel=nivel+1;
+                                matarProcesos();
+                                dimensiones=20;
+                                objetivos_nucleo=1;
+                                objetivos_torres=2;
+                                enemigos=6;
+                                cantidad_concreto=100;
+                                matriz=new Array(dimensiones);
+                                listaEnemigos=[];
                                 vidas=3;
                                 vida=100;
+                                clearTimeout(timer);
                                 nivel3();
                             }
-                            if(nivel===3){
+                            else if(nivel===3){
                                 alert("Has ganado el juego felicidades");
                             }
                         }
@@ -1139,17 +1171,35 @@ function iniciarJuego(){
                             alert("Has ganado el nivel "+nivel);
                             if(nivel===1){
                                 nivel=nivel+1;
+                                matarProcesos();
+                                dimensiones=20;
+                                objetivos_nucleo=1;
+                                objetivos_torres=2;
+                                enemigos=6;
+                                cantidad_concreto=100;
+                                matriz=new Array(dimensiones);
+                                listaEnemigos=[];
                                 vidas=3;
                                 vida=100;
+                                clearTimeout(timer);
                                 nivel2();
                             }
-                            if(nivel===2){
+                            else if(nivel===2){
                                 nivel=nivel+1;
+                                matarProcesos();
+                                dimensiones=20;
+                                objetivos_nucleo=1;
+                                objetivos_torres=2;
+                                enemigos=6;
+                                cantidad_concreto=100;
+                                matriz=new Array(dimensiones);
+                                listaEnemigos=[];
                                 vidas=3;
                                 vida=100;
+                                clearTimeout(timer);
                                 nivel3();
                             }
-                            if(nivel===3){
+                            else if(nivel===3){
                                 alert("Has ganado el juego felicidades");
                             }
                         }
@@ -1182,17 +1232,35 @@ function iniciarJuego(){
                             alert("Has ganado el nivel "+nivel);
                             if(nivel===1){
                                 nivel=nivel+1;
+                                matarProcesos();
+                                dimensiones=20;
+                                objetivos_nucleo=1;
+                                objetivos_torres=2;
+                                enemigos=6;
+                                cantidad_concreto=100;
+                                matriz=new Array(dimensiones);
+                                listaEnemigos=[];
                                 vidas=3;
                                 vida=100;
+                                clearTimeout(timer);
                                 nivel2();
                             }
-                            if(nivel===2){
+                            else if(nivel===2){
                                 nivel=nivel+1;
+                                matarProcesos();
+                                dimensiones=20;
+                                objetivos_nucleo=1;
+                                objetivos_torres=2;
+                                enemigos=6;
+                                cantidad_concreto=100;
+                                matriz=new Array(dimensiones);
+                                listaEnemigos=[];
                                 vidas=3;
                                 vida=100;
+                                clearTimeout(timer);
                                 nivel3();
                             }
-                            if(nivel===3){
+                            else if(nivel===3){
                                 alert("Has ganado el juego felicidades");
                             }
                         }
@@ -1204,17 +1272,35 @@ function iniciarJuego(){
                             alert("Has ganado el nivel "+nivel);
                             if(nivel===1){
                                 nivel=nivel+1;
+                                matarProcesos();
+                                dimensiones=20;
+                                objetivos_nucleo=1;
+                                objetivos_torres=2;
+                                enemigos=6;
+                                cantidad_concreto=100;
+                                matriz=new Array(dimensiones);
+                                listaEnemigos=[];
                                 vidas=3;
                                 vida=100;
+                                clearTimeout(timer);
                                 nivel2();
                             }
-                            if(nivel===2){
+                            else if(nivel===2){
                                 nivel=nivel+1;
+                                matarProcesos();
+                                dimensiones=20;
+                                objetivos_nucleo=1;
+                                objetivos_torres=2;
+                                enemigos=6;
+                                cantidad_concreto=100;
+                                matriz=new Array(dimensiones);
+                                listaEnemigos=[];
                                 vidas=3;
                                 vida=100;
+                                clearTimeout(timer);
                                 nivel3();
                             }
-                            if(nivel===3){
+                            else if(nivel===3){
                                 alert("Has ganado el juego felicidades");
                             }
                         }
@@ -1247,17 +1333,35 @@ function iniciarJuego(){
                             alert("Has ganado el nivel "+nivel);
                             if(nivel===1){
                                 nivel=nivel+1;
+                                matarProcesos();
+                                dimensiones=20;
+                                objetivos_nucleo=1;
+                                objetivos_torres=2;
+                                enemigos=6;
+                                cantidad_concreto=100;
+                                matriz=new Array(dimensiones);
+                                listaEnemigos=[];
                                 vidas=3;
                                 vida=100;
+                                clearTimeout(timer);
                                 nivel2();
                             }
-                            if(nivel===2){
+                            else if(nivel===2){
                                 nivel=nivel+1;
+                                matarProcesos();
+                                dimensiones=20;
+                                objetivos_nucleo=1;
+                                objetivos_torres=2;
+                                enemigos=6;
+                                cantidad_concreto=100;
+                                matriz=new Array(dimensiones);
+                                listaEnemigos=[];
                                 vidas=3;
                                 vida=100;
+                                clearTimeout(timer);
                                 nivel3();
                             }
-                            if(nivel===3){
+                            else if(nivel===3){
                                 alert("Has ganado el juego felicidades");
                             }
                         }
@@ -1269,17 +1373,35 @@ function iniciarJuego(){
                             alert("Has ganado el nivel "+nivel);
                             if(nivel===1){
                                 nivel=nivel+1;
+                                matarProcesos();
+                                dimensiones=20;
+                                objetivos_nucleo=1;
+                                objetivos_torres=2;
+                                enemigos=6;
+                                cantidad_concreto=100;
+                                matriz=new Array(dimensiones);
+                                listaEnemigos=[];
                                 vidas=3;
                                 vida=100;
+                                clearTimeout(timer);
                                 nivel2();
                             }
-                            if(nivel===2){
+                            else if(nivel===2){
                                 nivel=nivel+1;
+                                matarProcesos();
+                                dimensiones=20;
+                                objetivos_nucleo=1;
+                                objetivos_torres=2;
+                                enemigos=6;
+                                cantidad_concreto=100;
+                                matriz=new Array(dimensiones);
+                                listaEnemigos=[];
                                 vidas=3;
                                 vida=100;
+                                clearTimeout(timer);
                                 nivel3();
                             }
-                            if(nivel===3){
+                            else if(nivel===3){
                                 alert("Has ganado el juego felicidades");
                             }
                         }
@@ -1312,17 +1434,35 @@ function iniciarJuego(){
                             alert("Has ganado el nivel "+nivel);
                             if(nivel===1){
                                 nivel=nivel+1;
+                                matarProcesos();
+                                dimensiones=20;
+                                objetivos_nucleo=1;
+                                objetivos_torres=2;
+                                enemigos=6;
+                                cantidad_concreto=100;
+                                matriz=new Array(dimensiones);
+                                listaEnemigos=[];
                                 vidas=3;
                                 vida=100;
+                                clearTimeout(timer);
                                 nivel2();
                             }
-                            if(nivel===2){
+                            else if(nivel===2){
                                 nivel=nivel+1;
+                                matarProcesos();
+                                dimensiones=20;
+                                objetivos_nucleo=1;
+                                objetivos_torres=2;
+                                enemigos=6;
+                                cantidad_concreto=100;
+                                matriz=new Array(dimensiones);
+                                listaEnemigos=[];
                                 vidas=3;
                                 vida=100;
+                                clearTimeout(timer);
                                 nivel3();
                             }
-                            if(nivel===3){
+                            else if(nivel===3){
                                 alert("Has ganado el juego felicidades");
                             }
                         }
@@ -1335,17 +1475,35 @@ function iniciarJuego(){
                             alert("Has ganado el nivel "+nivel);
                             if(nivel===1){
                                 nivel=nivel+1;
+                                matarProcesos();
+                                dimensiones=20;
+                                objetivos_nucleo=1;
+                                objetivos_torres=2;
+                                enemigos=6;
+                                cantidad_concreto=100;
+                                matriz=new Array(dimensiones);
+                                listaEnemigos=[];
                                 vidas=3;
                                 vida=100;
+                                clearTimeout(timer);
                                 nivel2();
                             }
-                            if(nivel===2){
+                            else if(nivel===2){
                                 nivel=nivel+1;
+                                matarProcesos();
+                                dimensiones=20;
+                                objetivos_nucleo=1;
+                                objetivos_torres=2;
+                                enemigos=6;
+                                cantidad_concreto=100;
+                                matriz=new Array(dimensiones);
+                                listaEnemigos=[];
                                 vidas=3;
                                 vida=100;
+                                clearTimeout(timer);
                                 nivel3();
                             }
-                            if(nivel===3){
+                            else if(nivel===3){
                                 alert("Has ganado el juego felicidades");
                             }
                         }
@@ -1367,7 +1525,6 @@ function nivel1(){
     colocarObjetivos();
     colocarEnemigos();
     iniciarJuego();
-    setTimeout(colocarEnemigos,60000);
 }
 function main(){
     nivel1();
