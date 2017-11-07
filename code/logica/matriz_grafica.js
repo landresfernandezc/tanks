@@ -39,7 +39,7 @@ function crearMurosMetal(){
                 matriz[x][y] = b_metal;
             }
             else{
-                var b_vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                var b_vacio=new Bloque('va',img_bloque_vacio,false);
                 matriz[x][y] = b_vacio;
             }
         }
@@ -177,7 +177,7 @@ function limpiarBalas(){
     {
         for (var j = 0; j < dimensiones; j++){
             if(matriz[i][j].nombre==='b'){
-                var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                var vacio=new Bloque('va',img_bloque_vacio,false);
                 matriz[i][j]=vacio;
             }
         }
@@ -231,7 +231,7 @@ function MoverEnemigo(enemigo){
                 if(matriz[x-1][y].nombre==='va'){
                     enemigo.x=x-1;
                     enemigo.y=y;
-                    var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                    var vacio=new Bloque('va',img_bloque_vacio,false);
                     matriz[x][y]=vacio;
                     enemigo.fondo=img_enemigo_up;
                     matriz[x-1][y]=enemigo;
@@ -246,7 +246,7 @@ function MoverEnemigo(enemigo){
                 if(matriz[x+1][y].nombre==='va'){
                     enemigo.x=x+1;
                     enemigo.y=y;
-                    var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                    var vacio=new Bloque('va',img_bloque_vacio,false);
                     matriz[x][y]=vacio;
                     enemigo.fondo=img_enemigo_up;
                     matriz[x+1][y]=enemigo;
@@ -261,7 +261,7 @@ function MoverEnemigo(enemigo){
                 if(matriz[x][y+1].nombre==='va'){
                     enemigo.x=x;
                     enemigo.y=y+1;
-                    var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                    var vacio=new Bloque('va',img_bloque_vacio,false);
                     matriz[x][y]=vacio;
                     enemigo.fondo=img_enemigo_right;
                     matriz[x][y+1]=enemigo;
@@ -276,7 +276,7 @@ function MoverEnemigo(enemigo){
                 if(matriz[x][y-1].nombre==='va'){
                     enemigo.x=x;
                     enemigo.y=y-1;
-                    var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                    var vacio=new Bloque('va',img_bloque_vacio,false);
                     matriz[x][y]=vacio;
                     enemigo.fondo=img_enemigo_left;
                     matriz[x][y-1]=enemigo;
@@ -293,7 +293,7 @@ function MoverEnemigo(enemigo){
                         if(matriz[x-1][y].nombre==='va'){
                             enemigo.x=x-1;
                             enemigo.y=y;
-                            var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                            var vacio=new Bloque('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
                             enemigo.fondo=img_enemigo_up;
                             matriz[x-1][y]=enemigo;
@@ -308,7 +308,7 @@ function MoverEnemigo(enemigo){
                         if(matriz[x][y+1].nombre==='va'){
                             enemigo.x=x;
                             enemigo.y=y+1;
-                            var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                            var vacio=new Bloque('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
                             enemigo.fondo=img_enemigo_right;
                             matriz[x][y+1]=enemigo;
@@ -327,7 +327,7 @@ function MoverEnemigo(enemigo){
                         if(matriz[x+1][y].nombre==='va'){
                             enemigo.x=x+1;
                             enemigo.y=y;
-                            var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                            var vacio=new Bloque('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
                             enemigo.fondo=img_enemigo_down;
                             matriz[x+1][y]=enemigo;
@@ -341,7 +341,7 @@ function MoverEnemigo(enemigo){
                         if(matriz[x][y-1].nombre==='va'){
                             enemigo.x=x;
                             enemigo.y=y-1;
-                            var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                            var vacio=new Bloque('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
                             enemigo.fondo=img_enemigo_left;
                             matriz[x][y-1]=enemigo;
@@ -359,7 +359,7 @@ function MoverEnemigo(enemigo){
                         if(matriz[x+1][y].nombre==='va'){
                             enemigo.x=x+1;
                             enemigo.y=y;
-                            var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                            var vacio=new Bloque('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
                             enemigo.fondo=img_enemigo_down;
                             matriz[x+1][y]=enemigo;
@@ -374,7 +374,7 @@ function MoverEnemigo(enemigo){
                         if(matriz[x-1][y].nombre==='va'){
                             enemigo.x=x-1;
                             enemigo.y=y;
-                            var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                            var vacio=new Bloque('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
                             enemigo.fondo=img_enemigo_up;
                             matriz[x-1][y]=enemigo;
@@ -393,7 +393,7 @@ function MoverEnemigo(enemigo){
                         if(matriz[x][y+1].nombre==='va'){
                             enemigo.x=x;
                             enemigo.y=y+1;
-                            var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                            var vacio=new Bloque('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
                             enemigo.fondo=img_enemigo_right;
                             matriz[x][y+1]=enemigo;
@@ -408,7 +408,7 @@ function MoverEnemigo(enemigo){
                         if(matriz[x][y-1].nombre==='va'){
                             enemigo.x=x;
                             enemigo.y=y-1;
-                            var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                            var vacio=new Bloque('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
                             enemigo.fondo=img_enemigo_left;
                             matriz[x][y-1]=enemigo;
@@ -429,7 +429,7 @@ function MoverEnemigo(enemigo){
                         if(matriz[x-1][y].nombre==='va'){
                             enemigo.x=x-1;
                             enemigo.y=y;
-                            var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                            var vacio=new Bloque('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
                             enemigo.fondo=img_enemigo_up;
                             matriz[x-1][y]=enemigo;
@@ -444,7 +444,7 @@ function MoverEnemigo(enemigo){
                         if(matriz[x][y-1].nombre==='va'){
                             enemigo.x=x;
                             enemigo.y=y-1;
-                            var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                            var vacio=new Bloque('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
                             enemigo.fondo=img_enemigo_left;
                             matriz[x][y-1]=enemigo;
@@ -464,7 +464,7 @@ function MoverEnemigo(enemigo){
                         if(matriz[x+1][y].nombre==='va'){
                             enemigo.x=x+1;
                             enemigo.y=y;
-                            var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                            var vacio=new Bloque('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
                             enemigo.fondo=img_enemigo_down;
                             matriz[x+1][y]=enemigo;
@@ -478,7 +478,7 @@ function MoverEnemigo(enemigo){
                         if(matriz[x][y+1].nombre==='va'){
                             enemigo.x=x;
                             enemigo.y=y+1;
-                            var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                            var vacio=new Bloque('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
                             enemigo.fondo=img_enemigo_right;
                             matriz[x][y+1]=enemigo;
@@ -499,7 +499,7 @@ function MoverEnemigo(enemigo){
                     if(matriz[x+1][y].nombre==='va'){
                         enemigo.x=x+1;
                         enemigo.y=y;
-                        var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                        var vacio=new Bloque('va',img_bloque_vacio,false);
                         matriz[x][y]=vacio;
                         enemigo.fondo=img_enemigo_down;
                         matriz[x+1][y]=enemigo;
@@ -513,7 +513,7 @@ function MoverEnemigo(enemigo){
                     if(matriz[x][y+1].nombre==='va'){
                         enemigo.x=x;
                         enemigo.y=y+1;
-                        var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                        var vacio=new Bloque('va',img_bloque_vacio,false);
                         matriz[x][y]=vacio;
                         enemigo.fondo=img_enemigo_right;
                         matriz[x][y+1]=enemigo;
@@ -528,7 +528,7 @@ function MoverEnemigo(enemigo){
                     if(matriz[x-1][y].nombre==='va'){
                         enemigo.x=x-1;
                         enemigo.y=y;
-                        var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                        var vacio=new Bloque('va',img_bloque_vacio,false);
                         matriz[x][y]=vacio;
                         enemigo.fondo=img_enemigo_up;
                         matriz[x-1][y]=enemigo;
@@ -547,7 +547,7 @@ function MoverEnemigo(enemigo){
                     if(matriz[x+1][y].nombre==='va'){
                         enemigo.x=x+1;
                         enemigo.y=y;
-                        var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                        var vacio=new Bloque('va',img_bloque_vacio,false);
                         matriz[x][y]=vacio;
                         enemigo.fondo=img_enemigo_down;
                         matriz[x+1][y]=enemigo;
@@ -562,7 +562,7 @@ function MoverEnemigo(enemigo){
                     if(matriz[x][y+1].nombre==='va'){
                         enemigo.x=x;
                         enemigo.y=y+1;
-                        var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                        var vacio=new Bloque('va',img_bloque_vacio,false);
                         matriz[x][y]=vacio;
                         enemigo.fondo=img_enemigo_right;
                         matriz[x][y+1]=enemigo;
@@ -577,7 +577,7 @@ function MoverEnemigo(enemigo){
                     if(matriz[x][y-1].nombre==='va'){
                         enemigo.x=x;
                         enemigo.y=y-1;
-                        var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                        var vacio=new Bloque('va',img_bloque_vacio,false);
                         matriz[x][y]=vacio;
                         enemigo.fondo=img_enemigo_left;
                         matriz[x][y-1]=enemigo;
@@ -596,7 +596,7 @@ function MoverEnemigo(enemigo){
                     if(matriz[x+1][y].nombre==='va'){
                         enemigo.x=x+1;
                         enemigo.y=y;
-                        var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                        var vacio=new Bloque('va',img_bloque_vacio,false);
                         matriz[x][y]=vacio;
                         enemigo.fondo=img_enemigo_down;
                         matriz[x+1][y]=enemigo;
@@ -611,7 +611,7 @@ function MoverEnemigo(enemigo){
                     if(matriz[x][y+1].nombre==='va'){
                         enemigo.x=x;
                         enemigo.y=y+1;
-                        var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                        var vacio=new Bloque('va',img_bloque_vacio,false);
                         matriz[x][y]=vacio;
                         enemigo.fondo=img_enemigo_right;
                         matriz[x][y+1]=enemigo;
@@ -626,7 +626,7 @@ function MoverEnemigo(enemigo){
                     if(matriz[x][y-1].nombre==='va'){
                         enemigo.x=x;
                         enemigo.y=y-1;
-                        var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                        var vacio=new Bloque('va',img_bloque_vacio,false);
                         matriz[x][y]=vacio;
                         enemigo.fondo=img_enemigo_left;
                         matriz[x][y-1]=enemigo;
@@ -645,7 +645,7 @@ function MoverEnemigo(enemigo){
                     if(matriz[x-1][y].nombre==='va'){
                         enemigo.x=x-1;
                         enemigo.y=y;
-                        var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                        var vacio=new Bloque('va',img_bloque_vacio,false);
                         matriz[x][y]=vacio;
                         enemigo.fondo=img_enemigo_up;
                         matriz[x-1][y]=enemigo;
@@ -660,7 +660,7 @@ function MoverEnemigo(enemigo){
                     if(matriz[x][y+1].nombre==='va'){
                         enemigo.x=x;
                         enemigo.y=y+1;
-                        var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                        var vacio=new Bloque('va',img_bloque_vacio,false);
                         matriz[x][y]=vacio;
                         enemigo.fondo=img_enemigo_right;
                         matriz[x][y+1]=enemigo;
@@ -675,7 +675,7 @@ function MoverEnemigo(enemigo){
                     if(matriz[x][y-1].nombre==='va'){
                         enemigo.x=x;
                         enemigo.y=y-1;
-                        var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                        var vacio=new Bloque('va',img_bloque_vacio,false);
                         matriz[x][y]=vacio;
                         enemigo.fondo=img_enemigo_left;
                         matriz[x][y-1]=enemigo;
@@ -694,7 +694,7 @@ function MoverEnemigo(enemigo){
                     if(matriz[x-1][y].nombre==='va'){
                         enemigo.x=x-1;
                         enemigo.y=y;
-                        var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                        var vacio=new Bloque('va',img_bloque_vacio,false);
                         matriz[x][y]=vacio;
                         enemigo.fondo=img_enemigo_up;
                         matriz[x-1][y]=enemigo;
@@ -709,7 +709,7 @@ function MoverEnemigo(enemigo){
                     if(matriz[x][y+1].nombre==='va'){
                         enemigo.x=x;
                         enemigo.y=y+1;
-                        var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                        var vacio=new Bloque('va',img_bloque_vacio,false);
                         matriz[x][y]=vacio;
                         enemigo.fondo=img_enemigo_right;
                         matriz[x][y+1]=enemigo;
@@ -724,7 +724,7 @@ function MoverEnemigo(enemigo){
                     if(matriz[x][y-1].nombre==='va'){
                         enemigo.x=x;
                         enemigo.y=y-1;
-                        var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                        var vacio=new Bloque('va',img_bloque_vacio,false);
                         matriz[x][y]=vacio;
                         enemigo.fondo=img_enemigo_left;
                         matriz[x][y-1]=enemigo;
@@ -738,7 +738,7 @@ function MoverEnemigo(enemigo){
                     if(matriz[x+1][y].nombre==='va'){
                         enemigo.x=x+1;
                         enemigo.y=y;
-                        var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                        var vacio=new Bloque('va',img_bloque_vacio,false);
                         matriz[x][y]=vacio;
                         enemigo.fondo=img_enemigo_down;
                         matriz[x+1][y]=enemigo;
@@ -776,7 +776,7 @@ function MoverEnemigo(enemigo){
                             }
                             if(vida<=0){
                                 vidas=vidas-1;
-                                var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                                var vacio=new Bloque('va',img_bloque_vacio,false);
                                 matriz[temx][tempy]=vacio;
                                 pintarPantalla();
                                 imprimirMatrizLogica();
@@ -786,7 +786,7 @@ function MoverEnemigo(enemigo){
                                 document.getElementById("t_vidas").innerHTML=vidas;
                             }
                             if(vidas===0){
-                                var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                                var vacio=new Bloque('va',img_bloque_vacio,false);
                                 matriz[temx][tempy]=vacio;
                                 pintarPantalla();
                                 imprimirMatrizLogica();
@@ -796,7 +796,7 @@ function MoverEnemigo(enemigo){
                                 ctx.fillText("Juego perdido",50,50);
                             }
                             if(vidas>0 && bandera===true){
-                                var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                                var vacio=new Bloque('va',img_bloque_vacio,false);
                                 matriz[temx][tempy]=vacio;
                                 pintarPantalla();
                                 imprimirMatrizLogica();
@@ -831,7 +831,7 @@ function MoverEnemigo(enemigo){
                             }
                             if(vida<=0){
                                 vidas=vidas-1;
-                                var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                                var vacio=new Bloque('va',img_bloque_vacio,false);
                                 matriz[temx][tempy]=vacio;
                                 pintarPantalla();
                                 imprimirMatrizLogica();
@@ -841,7 +841,7 @@ function MoverEnemigo(enemigo){
                                 document.getElementById("t_vidas").innerHTML=vidas;
                             }
                             if(vidas===0){
-                                var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                                var vacio=new Bloque('va',img_bloque_vacio,false);
                                 matriz[temx][tempy]=vacio;
                                 pintarPantalla();
                                 imprimirMatrizLogica();
@@ -851,7 +851,7 @@ function MoverEnemigo(enemigo){
                                 ctx.fillText("Juego perdido",50,50);
                             }
                             if(vidas>0 && bandera===true){
-                                var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                                var vacio=new Bloque('va',img_bloque_vacio,false);
                                 matriz[temx][tempy]=vacio;
                                 pintarPantalla();
                                 imprimirMatrizLogica();
@@ -886,7 +886,7 @@ function MoverEnemigo(enemigo){
                             }
                             if(vida<=0){
                                 vidas=vidas-1;
-                                var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                                var vacio=new Bloque('va',img_bloque_vacio,false);
                                 matriz[temx][tempy]=vacio;
                                 pintarPantalla();
                                 imprimirMatrizLogica();
@@ -896,7 +896,7 @@ function MoverEnemigo(enemigo){
                                 document.getElementById("t_vidas").innerHTML=vidas;
                             }
                             if(vidas===0){
-                                var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                                var vacio=new Bloque('va',img_bloque_vacio,false);
                                 matriz[temx][tempy]=vacio;
                                 pintarPantalla();
                                 imprimirMatrizLogica();
@@ -906,7 +906,7 @@ function MoverEnemigo(enemigo){
                                 ctx.fillText("Juego perdido",50,50);
                             }
                             if(vidas>0 && bandera===true){
-                                var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                                var vacio=new Bloque('va',img_bloque_vacio,false);
                                 matriz[temx][tempy]=vacio;
                                 pintarPantalla();
                                 imprimirMatrizLogica();
@@ -941,7 +941,7 @@ function MoverEnemigo(enemigo){
                             }
                             if(vida<=0){
                                 vidas=vidas-1;
-                                var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                                var vacio=new Bloque('va',img_bloque_vacio,false);
                                 matriz[temx][tempy]=vacio;
                                 pintarPantalla();
                                 imprimirMatrizLogica();
@@ -951,7 +951,7 @@ function MoverEnemigo(enemigo){
                                 document.getElementById("t_vidas").innerHTML=vidas;
                             }
                             if(vidas===0){
-                                var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                                var vacio=new Bloque('va',img_bloque_vacio,false);
                                 matriz[temx][tempy]=vacio;
                                 pintarPantalla();
                                 imprimirMatrizLogica();
@@ -961,7 +961,7 @@ function MoverEnemigo(enemigo){
                                 ctx.fillText("Juego perdido",50,50);
                             }
                             if(vidas>0 && bandera===true){
-                                var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                                var vacio=new Bloque('va',img_bloque_vacio,false);
                                 matriz[temx][tempy]=vacio;
                                 pintarPantalla();
                                 imprimirMatrizLogica();
@@ -998,17 +998,17 @@ function colocarEnemigos(){
                 if(x===i && y===j){
                     var temp=generaRandom(1,3);
                     if(temp===1){
-                        var enemigo=new Tank1('t1',i,j,img_enemigo_down,'p',true);
+                        var enemigo=new Tank1('t1',i,j,img_enemigo_down,'p',true,3);
                         matriz[x][y]=enemigo;
                         listaEnemigos.push(enemigo);
                     }
                     if(temp===2){
-                        var enemigo=new Tank2('t2',i,j,img_enemigo_down,'m',true);
+                        var enemigo=new Tank2('t2',i,j,img_enemigo_down,'m',true,2);
                         matriz[x][y]=enemigo;
                         listaEnemigos.push(enemigo);
                     }
                     if(temp===3){
-                        var enemigo=new Tank3('t3',i,j,img_enemigo_down,'a',true);
+                        var enemigo=new Tank3('t3',i,j,img_enemigo_down,'a',true,0);
                         matriz[x][y]=enemigo;
                         listaEnemigos.push(enemigo);
                     }
@@ -1067,7 +1067,6 @@ function iniciarJuego(){
     var bdown=true;
     var heroe_l=new Heroe('h',1,1,img_heroe_down,'disparar',vidas);
     matriz[px][py]=heroe_l;
-    imprimirMatrizLogica();
     pintarPantalla();
     function anim(e){
         console.log(e.keyCode);
@@ -1075,7 +1074,7 @@ function iniciarJuego(){
             var xtem=px;
             var ytem=py+1;
             if(validarMovimiento(xtem,ytem)){
-                var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                var vacio=new Bloque('va',img_bloque_vacio,false);
                 matriz[px][py]=vacio;
                 py=py+1;
                 var heroet=new Heroe('h',px,py,img_heroe_right,'disparar',vidas);
@@ -1091,7 +1090,7 @@ function iniciarJuego(){
                 brigth=true;
                 bup=false;
                 bdown=false;
-                var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                var vacio=new Bloque('va',img_bloque_vacio,false);
                 matriz[px][py]=vacio;
                 pintarPantalla();
                 var heroet=new Heroe('h',px,py,img_heroe_right,'disparar',vidas);
@@ -1103,7 +1102,7 @@ function iniciarJuego(){
             var xtem=px;
             var ytem=py-1;
             if(validarMovimiento(xtem,ytem)){
-                var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                var vacio=new Bloque('va',img_bloque_vacio,false);
                 matriz[px][py]=vacio;
                 py=py-1;
                 var heroet=new Heroe('h',px,py,img_heroe_left,'disparar',vidas);
@@ -1112,14 +1111,13 @@ function iniciarJuego(){
                 brigth=false;
                 bup=false;
                 bdown=false;
-                imprimirMatrizLogica();
                 pintarPantalla();
             }else{
                 bleft=true;
                 brigth=false;
                 bup=false;
                 bdown=false;
-                var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                var vacio=new Bloque('va',img_bloque_vacio,false);
                 matriz[px][py]=vacio;
                 pintarPantalla();
                 var heroet=new Heroe('h',px,py,img_heroe_left,'disparar',vidas);
@@ -1131,7 +1129,7 @@ function iniciarJuego(){
             var xtem=px+1;
             var ytem=py;
             if(validarMovimiento(xtem,ytem)){
-                var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                var vacio=new Bloque('va',img_bloque_vacio,false);
                 matriz[px][py]=vacio;
                 px=px+1;
                 var heroet=new Heroe('h',px,py,img_heroe_down,'disparar',vidas);
@@ -1140,14 +1138,13 @@ function iniciarJuego(){
                 brigth=false;
                 bup=false;
                 bdown=true;
-                imprimirMatrizLogica();
                 pintarPantalla();
             }else{
                 bleft=false;
                 brigth=false;
                 bup=false;
                 bdown=true;
-                var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                var vacio=new Bloque('va',img_bloque_vacio,false);
                 matriz[px][py]=vacio;
                 pintarPantalla();
                 var heroet=new Heroe('h',px,py,img_heroe_down,'disparar',vidas);
@@ -1159,7 +1156,7 @@ function iniciarJuego(){
             var xtem=px-1;
             var ytem=py;
             if(validarMovimiento(xtem,ytem)){
-                var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                var vacio=new Bloque('va',img_bloque_vacio,false);
                 matriz[px][py]=vacio;
                 px=px-1;
                 var heroet=new Heroe('h',px,py,img_heroe_up,'disparar',vidas);
@@ -1170,7 +1167,7 @@ function iniciarJuego(){
                 bdown=false;
                 pintarPantalla();
             }else{
-                var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                var vacio=new Bloque('va',img_bloque_vacio,false);
                 matriz[px][py]=vacio;
                 pintarPantalla();
                 var heroet=new Heroe('h',px,py,img_heroe_up,'disparar',vidas);
@@ -1195,8 +1192,19 @@ function iniciarJuego(){
                 limpiarBalas();
                 pintarPantalla();
                 if(validarDisparo(temx,tempy)){
-                    if(matriz[temx][tempy].nombre==='t1'||matriz[temx][tempy].nombre==='t2'|| matriz[temx][tempy].nombre==='t3'){
+                    if(matriz[temx][tempy].nombre==='t2'|| matriz[temx][tempy].nombre==='t3'){
                         matriz[temx][tempy].vivo=false;
+                    }
+                    if(matriz[temx][tempy].nombre==='t1'){
+                        if(matriz[temx][tempy].blindaje===0){
+                            matriz[temx][tempy].vivo=false;
+                            var vacio=new Bloque('va',img_bloque_vacio,false);
+                            matriz[temx][tempy]=vacio;
+                            pintarPantalla();
+                        }
+                        else{
+                            matriz[temx][tempy].blindaje=matriz[temx][tempy].blindaje-1;
+                        }
                     }
                     if(matriz[temx][tempy].nombre==='opn'){
                         objetivos_nucleo=objetivos_nucleo-1;
@@ -1280,9 +1288,241 @@ function iniciarJuego(){
                             }
                         }
                     }
-                    var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
-                    matriz[temx][tempy]=vacio;
+                    if(matriz[temx][tempy].nombre!='t1'){
+                        var vacio=new Bloque('va',img_bloque_vacio,false);
+                        matriz[temx][tempy]=vacio;
+                        pintarPantalla();
+                    }
+                }
+            }
+            if(brigth){
+                var temx=px;
+                var tempy=py+1;
+                while(matriz[temx][tempy].nombre==='va'){
+                    var temp_bala=new Bala('b',img_bala_right);
+                    matriz[temx][tempy]=temp_bala;
                     pintarPantalla();
+                    tempy=tempy+1;
+                }
+                limpiarBalas();
+                pintarPantalla();
+                if(validarDisparo(temx,tempy)){
+                    if(matriz[temx][tempy].nombre==='t2'|| matriz[temx][tempy].nombre==='t3'){
+                        matriz[temx][tempy].vivo=false;
+                    }
+                    if(matriz[temx][tempy].nombre==='t1'){
+                        if(matriz[temx][tempy].blindaje===0){
+                            matriz[temx][tempy].vivo=false;
+                            var vacio=new Bloque('va',img_bloque_vacio,false);
+                            matriz[temx][tempy]=vacio;
+                            pintarPantalla();
+                        }
+                        else{
+                            matriz[temx][tempy].blindaje=matriz[temx][tempy].blindaje-1;
+                        }
+                    }
+                    if(matriz[temx][tempy].nombre==='opn'){
+                        objetivos_nucleo=objetivos_nucleo-1;
+                        var objetivos_primarios=objetivos_nucleo+objetivos_torres;
+                        if(objetivos_primarios===0){
+                            alert("Has ganado el nivel "+nivel);
+                            if(nivel===1){
+                                matarProcesos();
+                                dimensiones=20;
+                                objetivos_nucleo=1;
+                                objetivos_torres=2;
+                                enemigos=6;
+                                cantidad_concreto=100;
+                                matriz=new Array(dimensiones);
+                                listaEnemigos=[];
+                                vidas=3;
+                                vida=100;
+                                clearTimeout(timer);
+                                nivel=nivel+1;
+                                nivel2();
+                            }
+                            else if(nivel===2){
+                                matarProcesos();
+                                dimensiones=20;
+                                objetivos_nucleo=1;
+                                objetivos_torres=2;
+                                enemigos=6;
+                                cantidad_concreto=100;
+                                matriz=new Array(dimensiones);
+                                listaEnemigos=[];
+                                vidas=3;
+                                vida=100;
+                                clearTimeout(timer);
+                                nivel=nivel+1;
+                                nivel3();
+                            }
+                            else if(nivel===3){
+                                alert("Has ganado el juego felicidades");
+                                window.location.href='index.html';
+                            }
+                        }
+                    }
+                    if(matriz[temx][tempy].nombre==='opt'){
+                        objetivos_torres=objetivos_torres-1;
+                        var objetivos_primarios=objetivos_nucleo+objetivos_torres;
+                        if(objetivos_primarios===0){
+                            alert("Has ganado el nivel "+nivel);
+                            if(nivel===1){
+                                matarProcesos();
+                                dimensiones=20;
+                                objetivos_nucleo=1;
+                                objetivos_torres=2;
+                                enemigos=6;
+                                cantidad_concreto=100;
+                                matriz=new Array(dimensiones);
+                                listaEnemigos=[];
+                                vidas=3;
+                                vida=100;
+                                clearTimeout(timer);
+                                nivel=nivel+1;
+                                nivel2();
+                            }
+                            else if(nivel===2){
+                                matarProcesos();
+                                dimensiones=20;
+                                objetivos_nucleo=1;
+                                objetivos_torres=2;
+                                enemigos=6;
+                                cantidad_concreto=100;
+                                matriz=new Array(dimensiones);
+                                listaEnemigos=[];
+                                vidas=3;
+                                vida=100;
+                                clearTimeout(timer);
+                                nivel=nivel+1;
+                                nivel3();
+                            }
+                            else if(nivel===3){
+                                alert("Has ganado el juego felicidades");
+                                window.location.href='index.html';
+                            }
+                        }
+                    }
+                    if(matriz[temx][tempy].nombre!='t1'){
+                        var vacio=new Bloque('va',img_bloque_vacio,false);
+                        matriz[temx][tempy]=vacio;
+                        pintarPantalla();
+                    }
+                }
+            }
+            if(bup){
+                var temx=px-1;
+                var tempy=py;
+                while(matriz[temx][tempy].nombre==='va'){
+                    var temp_bala=new Bala('b',img_bala_up);
+                    matriz[temx][tempy]=temp_bala;
+                    pintarPantalla();
+                    temx=temx-1;
+                }
+                limpiarBalas();
+                pintarPantalla();
+                if(validarDisparo(temx,tempy)){
+                    if(matriz[temx][tempy].nombre==='t2'|| matriz[temx][tempy].nombre==='t3'){
+                        matriz[temx][tempy].vivo=false;
+                    }
+                    if(matriz[temx][tempy].nombre==='t1'){
+                        if(matriz[temx][tempy].blindaje===0){
+                            matriz[temx][tempy].vivo=false;
+                            var vacio=new Bloque('va',img_bloque_vacio,false);
+                            matriz[temx][tempy]=vacio;
+                            pintarPantalla();
+                        }
+                        else{
+                            matriz[temx][tempy].blindaje=matriz[temx][tempy].blindaje-1;
+                        }
+                    }
+                    if(matriz[temx][tempy].nombre==='opn'){
+                        objetivos_nucleo=objetivos_nucleo-1;
+                        var objetivos_primarios=objetivos_nucleo+objetivos_torres;
+                        if(objetivos_primarios===0){
+                            alert("Has ganado el nivel "+nivel);
+                            if(nivel===1){
+                                matarProcesos();
+                                dimensiones=20;
+                                objetivos_nucleo=1;
+                                objetivos_torres=2;
+                                enemigos=6;
+                                cantidad_concreto=100;
+                                matriz=new Array(dimensiones);
+                                listaEnemigos=[];
+                                vidas=3;
+                                vida=100;
+                                clearTimeout(timer);
+                                nivel=nivel+1;
+                                nivel2();
+                            }
+                            else if(nivel===2){
+                                matarProcesos();
+                                dimensiones=20;
+                                objetivos_nucleo=1;
+                                objetivos_torres=2;
+                                enemigos=6;
+                                cantidad_concreto=100;
+                                matriz=new Array(dimensiones);
+                                listaEnemigos=[];
+                                vidas=3;
+                                vida=100;
+                                clearTimeout(timer);
+                                nivel=nivel+1;
+                                nivel3();
+                            }
+                            else if(nivel===3){
+                                alert("Has ganado el juego felicidades");
+                                window.location.href='index.html';
+                            }
+                        }
+                    }
+                    if(matriz[temx][tempy].nombre==='opt'){
+                        objetivos_torres=objetivos_torres-1;
+                        var objetivos_primarios=objetivos_nucleo+objetivos_torres;
+                        if(objetivos_primarios===0){
+                            alert("Has ganado el nivel "+nivel);
+                            if(nivel===1){
+                                matarProcesos();
+                                dimensiones=20;
+                                objetivos_nucleo=1;
+                                objetivos_torres=2;
+                                enemigos=6;
+                                cantidad_concreto=100;
+                                matriz=new Array(dimensiones);
+                                listaEnemigos=[];
+                                vidas=3;
+                                vida=100;
+                                clearTimeout(timer);
+                                nivel=nivel+1;
+                                nivel2();
+                            }
+                            else if(nivel===2){
+                                matarProcesos();
+                                dimensiones=20;
+                                objetivos_nucleo=1;
+                                objetivos_torres=2;
+                                enemigos=6;
+                                cantidad_concreto=100;
+                                matriz=new Array(dimensiones);
+                                listaEnemigos=[];
+                                vidas=3;
+                                vida=100;
+                                clearTimeout(timer);
+                                nivel=nivel+1;
+                                nivel3();
+                            }
+                            else if(nivel===3){
+                                alert("Has ganado el juego felicidades");
+                                window.location.href='index.html';
+                            }
+                        }
+                    }
+                    if(matriz[temx][tempy].nombre!='t1'){
+                        var vacio=new Bloque('va',img_bloque_vacio,false);
+                        matriz[temx][tempy]=vacio;
+                        pintarPantalla();
+                    }
                 }
             }
             if(brigth){
@@ -1298,8 +1538,19 @@ function iniciarJuego(){
                 limpiarBalas();
                 pintarPantalla();
                 if(validarDisparo(temx,tempy)){
-                    if(matriz[temx][tempy].nombre==='t1'||matriz[temx][tempy].nombre==='t2'|| matriz[temx][tempy].nombre==='t3'){
+                    if(matriz[temx][tempy].nombre==='t2'|| matriz[temx][tempy].nombre==='t3'){
                         matriz[temx][tempy].vivo=false;
+                    }
+                    if(matriz[temx][tempy].nombre==='t1'){
+                        if(matriz[temx][tempy].blindaje===0){
+                            matriz[temx][tempy].vivo=false;
+                            var vacio=new Bloque('va',img_bloque_vacio,false);
+                            matriz[temx][tempy]=vacio;
+                            pintarPantalla();
+                        }
+                        else{
+                            matriz[temx][tempy].blindaje=matriz[temx][tempy].blindaje-1;
+                        }
                     }
                     if(matriz[temx][tempy].nombre==='opn'){
                         objetivos_nucleo=objetivos_nucleo-1;
@@ -1383,114 +1634,11 @@ function iniciarJuego(){
                             }
                         }
                     }
-                    var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
-                    matriz[temx][tempy]=vacio;
-                    pintarPantalla();
-                }
-            }
-            if(bup){
-                var temx=px-1;
-                var tempy=py;
-                while(matriz[temx][tempy].nombre==='va'){
-                    var temp_bala=new Bala('b',img_bala_up);
-                    matriz[temx][tempy]=temp_bala;
-                    pintarPantalla();
-                    //doDelay(10);
-                    temx=temx-1;
-                }
-                limpiarBalas();
-                pintarPantalla();
-                if(validarDisparo(temx,tempy)){
-                    if(matriz[temx][tempy].nombre==='t1'||matriz[temx][tempy].nombre==='t2'|| matriz[temx][tempy].nombre==='t3'){
-                        matriz[temx][tempy].vivo=false;
+                    if(matriz[temx][tempy].nombre!='t1'){
+                        var vacio=new Bloque('va',img_bloque_vacio,false);
+                        matriz[temx][tempy]=vacio;
+                        pintarPantalla();
                     }
-                    if(matriz[temx][tempy].nombre==='opn'){
-                        objetivos_nucleo=objetivos_nucleo-1;
-                        var objetivos_primarios=objetivos_nucleo+objetivos_torres;
-                        if(objetivos_primarios===0){
-                            alert("Has ganado el nivel "+nivel);
-                            if(nivel===1){
-                                matarProcesos();
-                                dimensiones=20;
-                                objetivos_nucleo=1;
-                                objetivos_torres=2;
-                                enemigos=6;
-                                cantidad_concreto=100;
-                                matriz=new Array(dimensiones);
-                                listaEnemigos=[];
-                                vidas=3;
-                                vida=100;
-                                clearTimeout(timer);
-                                nivel=nivel+1;
-                                nivel2();
-                            }
-                            else if(nivel===2){
-                                matarProcesos();
-                                dimensiones=20;
-                                objetivos_nucleo=1;
-                                objetivos_torres=2;
-                                enemigos=6;
-                                cantidad_concreto=100;
-                                matriz=new Array(dimensiones);
-                                listaEnemigos=[];
-                                vidas=3;
-                                vida=100;
-                                clearTimeout(timer);
-                                nivel=nivel+1;
-                                nivel3();
-                            }
-                            else if(nivel===3){
-
-                                alert("Has ganado el juego felicidades");
-                                window.location.href='index.html';
-
-                            }
-                        }
-                    }
-                    if(matriz[temx][tempy].nombre==='opt'){
-                        objetivos_torres=objetivos_torres-1;
-                        var objetivos_primarios=objetivos_nucleo+objetivos_torres;
-                        if(objetivos_primarios===0){
-                            alert("Has ganado el nivel "+nivel);
-                            if(nivel===1){
-                                matarProcesos();
-                                dimensiones=20;
-                                objetivos_nucleo=1;
-                                objetivos_torres=2;
-                                enemigos=6;
-                                cantidad_concreto=100;
-                                matriz=new Array(dimensiones);
-                                listaEnemigos=[];
-                                vidas=3;
-                                vida=100;
-                                clearTimeout(timer);
-                                nivel=nivel+1;
-                                nivel2();
-                            }
-                            else if(nivel===2){
-                                matarProcesos();
-                                dimensiones=20;
-                                objetivos_nucleo=1;
-                                objetivos_torres=2;
-                                enemigos=6;
-                                cantidad_concreto=100;
-                                matriz=new Array(dimensiones);
-                                listaEnemigos=[];
-                                vidas=3;
-                                vida=100;
-                                clearTimeout(timer);
-                                nivel=nivel+1;
-                                nivel3();
-                            }
-                            else if(nivel===3){
-                                alert("Has ganado el juego felicidades");
-                                window.location.href='index.html';
-                            }
-                        }
-                    }
-                    var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
-                    matriz[temx][tempy]=vacio;
-                    pintarPantalla();
                 }
             }
             if(bdown){
@@ -1506,8 +1654,19 @@ function iniciarJuego(){
                 limpiarBalas();
                 pintarPantalla();
                 if(validarDisparo(temx,tempy)){
-                    if(matriz[temx][tempy].nombre==='t1'||matriz[temx][tempy].nombre==='t2'|| matriz[temx][tempy].nombre==='t3'){
+                    if(matriz[temx][tempy].nombre==='t2'|| matriz[temx][tempy].nombre==='t3'){
                         matriz[temx][tempy].vivo=false;
+                    }
+                    if(matriz[temx][tempy].nombre==='t1'){
+                        if(matriz[temx][tempy].blindaje===0){
+                            matriz[temx][tempy].vivo=false;
+                            var vacio=new Bloque('va',img_bloque_vacio,false);
+                            matriz[temx][tempy]=vacio;
+                            pintarPantalla();
+                        }
+                        else{
+                            matriz[temx][tempy].blindaje=matriz[temx][tempy].blindaje-1;
+                        }
                     }
                     if(matriz[temx][tempy].nombre==='opn'){
                         objetivos_nucleo=objetivos_nucleo-1;
@@ -1555,6 +1714,80 @@ function iniciarJuego(){
                         var objetivos_primarios=objetivos_nucleo+objetivos_torres;
                         if(objetivos_primarios===0){
                             alert("Has ganado el nivel "+nivel);
+                            if(nivel===1){
+                                matarProcesos();
+                                dimensiones=20;
+                                objetivos_nucleo=1;
+                                objetivos_torres=2;
+                                enemigos=6;
+                                cantidad_concreto=100;
+                                matriz=new Array(dimensiones);
+                                listaEnemigos=[];
+                                vidas=3;
+                                vida=100;
+                                clearTimeout(timer);
+                                nivel=nivel+1;
+                                nivel2();
+                            }
+                            else if(nivel===2){
+                                matarProcesos();
+                                dimensiones=20;
+                                objetivos_nucleo=1;
+                                objetivos_torres=2;
+                                enemigos=6;
+                                cantidad_concreto=100;
+                                matriz=new Array(dimensiones);
+                                listaEnemigos=[];
+                                vidas=3;
+                                vida=100;
+                                clearTimeout(timer);
+                                nivel=nivel+1;
+                                nivel3();
+                            }
+                            else if(nivel===3){
+                                alert("Has ganado el juego felicidades");
+                                window.location.href='index.html';
+                            }
+                        }
+                    }
+                    if(matriz[temx][tempy].nombre!='t1'){
+                        var vacio=new Bloque('va',img_bloque_vacio,false);
+                        matriz[temx][tempy]=vacio;
+                        pintarPantalla();
+                    }
+                }
+            }
+            if(brigth){
+                var temx=px;
+                var tempy=py+1;
+                while(matriz[temx][tempy].nombre==='va'){
+                    var temp_bala=new Bala('b',img_bala_right);
+                    matriz[temx][tempy]=temp_bala;
+                    pintarPantalla();
+                    //doDelay(10);
+                    tempy=tempy+1;
+                }
+                limpiarBalas();
+                pintarPantalla();
+                if(validarDisparo(temx,tempy)){
+                    if(matriz[temx][tempy].nombre==='t2'|| matriz[temx][tempy].nombre==='t3'){
+                        matriz[temx][tempy].vivo=false;
+                    }
+                    if(matriz[temx][tempy].nombre==='t1'){
+                        if(matriz[temx][tempy].blindaje===0){
+                            matriz[temx][tempy].vivo=false;
+                            var vacio=new Bloque('va',img_bloque_vacio,false);
+                            matriz[temx][tempy]=vacio;
+                            pintarPantalla();
+                        }
+                        else{
+                            matriz[temx][tempy].blindaje=matriz[temx][tempy].blindaje-1;
+                        }
+                    }
+                    if(matriz[temx][tempy].nombre==='opn'){
+                        objetivos_nucleo=objetivos_nucleo-1;
+                        var objetivos_primarios=objetivos_nucleo+objetivos_torres;
+                        if(objetivos_primarios===0){
                             alert("Has ganado el nivel "+nivel);
                             if(nivel===1){
                                 matarProcesos();
@@ -1592,9 +1825,52 @@ function iniciarJuego(){
                             }
                         }
                     }
-                    var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
-                    matriz[temx][tempy]=vacio;
-                    pintarPantalla();
+                    if(matriz[temx][tempy].nombre==='opt'){
+                        objetivos_torres=objetivos_torres-1;
+                        var objetivos_primarios=objetivos_nucleo+objetivos_torres;
+                        if(objetivos_primarios===0){
+                            alert("Has ganado el nivel "+nivel);
+                            if(nivel===1){
+                                matarProcesos();
+                                dimensiones=20;
+                                objetivos_nucleo=1;
+                                objetivos_torres=2;
+                                enemigos=6;
+                                cantidad_concreto=100;
+                                matriz=new Array(dimensiones);
+                                listaEnemigos=[];
+                                vidas=3;
+                                vida=100;
+                                clearTimeout(timer);
+                                nivel=nivel+1;
+                                nivel2();
+                            }
+                            else if(nivel===2){
+                                matarProcesos();
+                                dimensiones=20;
+                                objetivos_nucleo=1;
+                                objetivos_torres=2;
+                                enemigos=6;
+                                cantidad_concreto=100;
+                                matriz=new Array(dimensiones);
+                                listaEnemigos=[];
+                                vidas=3;
+                                vida=100;
+                                clearTimeout(timer);
+                                nivel=nivel+1;
+                                nivel3();
+                            }
+                            else if(nivel===3){
+                                alert("Has ganado el juego felicidades");
+                                window.location.href='index.html';
+                            }
+                        }
+                    }
+                    if(matriz[temx][tempy].nombre!='t1'){
+                        var vacio=new Bloque('va',img_bloque_vacio,false);
+                        matriz[temx][tempy]=vacio;
+                        pintarPantalla();
+                    }
                 }
             }
         }

@@ -3,11 +3,12 @@
  */
 class Bloque{
 
-    constructor(nombre,fondo,durabilidad){
+    constructor(nombre, fondo, durabilidad) {
+        this._nombre = nombre;
         this._fondo = fondo;
         this._durabilidad = durabilidad;
-        this._nombre = nombre;
     }
+
     get nombre() {
         return this._nombre;
     }
@@ -15,9 +16,11 @@ class Bloque{
     set nombre(value) {
         this._nombre = value;
     }
+
     get fondo() {
         return this._fondo;
     }
+
     set fondo(value) {
         this._fondo = value;
     }

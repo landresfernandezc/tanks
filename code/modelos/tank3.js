@@ -3,7 +3,7 @@
  */
 class Tank3 extends Tank{
 
-    constructor(nombre, x, y, fondo, habilidad, vivo) {
+    constructor(nombre, x, y, fondo, habilidad, vivo,invisible) {
         super(nombre, x, y, fondo, habilidad, vivo);
         this._nombre = nombre;
         this._x = x;
@@ -11,12 +11,21 @@ class Tank3 extends Tank{
         this._fondo = fondo;
         this._habilidad = habilidad;
         this._vivo = vivo;
+        this._invisible=invisible;
     }
     get nombre() {
         return this._nombre;
     }
     set nombre(value){
         this._nombre = value;
+    }
+
+    get invisible() {
+        return this._invisible;
+    }
+
+    set invisible(value) {
+        this._invisible = value;
     }
 
     get x() {
