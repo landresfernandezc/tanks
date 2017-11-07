@@ -42,7 +42,6 @@ function crearMurosMetal(){
                 var b_vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                 matriz[x][y] = b_vacio;
             }
-
         }
     }
 }
@@ -218,7 +217,6 @@ function heroeCerca(enemigo){
         return false;
     }
 }
-
 //Funcion que se encarga de mover al enemigo
 function MoverEnemigo(enemigo){
         while(enemigo.vivo){
@@ -229,7 +227,6 @@ function MoverEnemigo(enemigo){
             var movimiento=0;
             var x=enemigo.x;
             var y=enemigo.y;
-
             if(matriz[enemigo.x-1][enemigo.y].nombre==='va' && matriz[enemigo.x][enemigo.y+1].nombre!='va'&& matriz[enemigo.x+1][enemigo.y].nombre!='va' && matriz[enemigo.x][enemigo.y-1].nombre!='va'){
                 if(matriz[x-1][y].nombre==='va'){
                     enemigo.x=x-1;
@@ -291,7 +288,6 @@ function MoverEnemigo(enemigo){
                 }
             }
             else if(matriz[enemigo.x-1][enemigo.y].nombre==='va' && matriz[enemigo.x][enemigo.y+1].nombre==='va'&& matriz[enemigo.x+1][enemigo.y].nombre!='va' && matriz[enemigo.x][enemigo.y-1].nombre!='va'){
-               // while(matriz[x][y].nombre!='va'){
                     movimiento=generaRandom(1,2);
                     if(movimiento===1){
                         if(matriz[x-1][y].nombre==='va'){
@@ -324,10 +320,8 @@ function MoverEnemigo(enemigo){
                         }
                     }
                     pintarPantalla();
-                //}
             }
             else if(matriz[enemigo.x+1][enemigo.y].nombre==='va' && matriz[enemigo.x][enemigo.y-1].nombre==='va' && matriz[enemigo.x-1][enemigo.y].nombre!='va' && matriz[enemigo.x][enemigo.y+1].nombre!='va'){
-                //while(matriz[x][y].nombre!='va'){
                     movimiento=generaRandom(1,2);
                     if(movimiento===1){
                         if(matriz[x+1][y].nombre==='va'){
@@ -360,7 +354,6 @@ function MoverEnemigo(enemigo){
                     pintarPantalla();
             }
             else if(matriz[enemigo.x+1][enemigo.y].nombre==='va' && matriz[enemigo.x-1][enemigo.y].nombre==='va'&&matriz[enemigo.x][enemigo.y+1].nombre!='va' && matriz[enemigo.x][enemigo.y-1].nombre!='va'){
-                //while(matriz[x][y].nombre!='va'){
                     movimiento=generaRandom(1,2);
                     if(movimiento===1){
                         if(matriz[x+1][y].nombre==='va'){
@@ -393,10 +386,8 @@ function MoverEnemigo(enemigo){
                         }
                     }
                     pintarPantalla();
-                //}
             }
             else if(matriz[enemigo.x][enemigo.y+1].nombre==='va' && matriz[enemigo.x][enemigo.y-1].nombre==='va'&&matriz[enemigo.x+1][enemigo.y].nombre!='va' && matriz[enemigo.x-1][enemigo.y].nombre!='va'){
-                //while(matriz[x][y].nombre!='va'){
                     movimiento=generaRandom(1,2);
                     if(movimiento===1){
                         if(matriz[x][y+1].nombre==='va'){
@@ -465,7 +456,6 @@ function MoverEnemigo(enemigo){
                         }
                     }
                     pintarPantalla();
-                //}
             }
             else if(matriz[enemigo.x+1][enemigo.y].nombre==='va' && matriz[enemigo.x][enemigo.y+1].nombre==='va'&&matriz[enemigo.x-1][enemigo.y].nombre!='va' && matriz[enemigo.x][enemigo.y-1].nombre!='va'){
                // while(matriz[x][y].nombre!='va'){
@@ -552,7 +542,6 @@ function MoverEnemigo(enemigo){
                 pintarPantalla();
             }
             else if(matriz[enemigo.x+1][enemigo.y].nombre==='va' && matriz[enemigo.x][enemigo.y+1].nombre==='va'&&matriz[enemigo.x-1][enemigo.y].nombre!='va' && matriz[enemigo.x][enemigo.y-1].nombre==='va'){
-                // while(matriz[x][y].nombre!='va'){
                 movimiento=generaRandom(1,3);
                 if(movimiento===1){
                     if(matriz[x+1][y].nombre==='va'){
@@ -766,6 +755,7 @@ function MoverEnemigo(enemigo){
                     if(bdown){
                         var temx=enemigo.x+1;
                         var tempy=enemigo.y;
+                        var bandera=false;
                         while(matriz[temx][tempy].nombre==='va'){
                             var temp_bala=new Bala('b',img_bala_down);
                             matriz[temx][tempy]=temp_bala;
@@ -774,7 +764,27 @@ function MoverEnemigo(enemigo){
                         pintarPantalla();
                         limpiarBalas();
                         if(validarDisparoEnemigo(temx,tempy)){
-                            vidas=vidas-1;
+                            if(matriz[enemigo.x][enemigo.y].habilidad==='a'){
+                                vidas=vidas-1;
+                                bandera=true;
+                            }
+                            if(matriz[enemigo.x][enemigo.y].habilidad==='m'){
+                                vida=vida-50;
+                            }
+                            if(matriz[enemigo.x][enemigo.y].habilidad==='p'){
+                                vida=vida-20;
+                            }
+                            if(vida<=0){
+                                vidas=vidas-1;
+                                var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                                matriz[temx][tempy]=vacio;
+                                pintarPantalla();
+                                imprimirMatrizLogica();
+                                alert("Te quedan "+vidas+" vidas");
+                                iniciarJuego();
+                                vida=100;
+                                document.getElementById("t_vidas").innerHTML=vidas;
+                            }
                             if(vidas===0){
                                 var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                                 matriz[temx][tempy]=vacio;
@@ -785,7 +795,7 @@ function MoverEnemigo(enemigo){
                                 var ctx = canvas.getContext("2d");
                                 ctx.fillText("Juego perdido",50,50);
                             }
-                            else{
+                            if(vidas>0 && bandera===true){
                                 var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                                 matriz[temx][tempy]=vacio;
                                 pintarPantalla();
@@ -794,109 +804,172 @@ function MoverEnemigo(enemigo){
                                 iniciarJuego();
                                 document.getElementById("t_vidas").innerHTML=vidas;
                             }
+                            document.getElementById("t_vida").innerHTML=vida;
                         }
                     }
                     if(bup){
                         var temx=enemigo.x-1;
                         var tempy=enemigo.y;
+                        var bandera=false;
                         while(matriz[temx][tempy].nombre==='va'){
-                            var temp_bala=new Bala('b',img_bala_down);
+                            var temp_bala=new Bala('b',img_bala_up);
                             matriz[temx][tempy]=temp_bala;
-                            temx=temx+1;
+                            temx=temx-1;
                         }
                         limpiarBalas();
                         pintarPantalla();
                         if(validarDisparoEnemigo(temx,tempy)){
-                            vidas=vidas-1;
-                            if(vidas===0){
-                                matriz[temx][tempy].vidas=vidas;
+                            if(matriz[enemigo.x][enemigo.y].habilidad==='a'){
+                                vidas=vidas-1;
+                                bandera=true;
+                            }
+                            if(matriz[enemigo.x][enemigo.y].habilidad==='m'){
+                                vida=vida-50;
+                            }
+                            if(matriz[enemigo.x][enemigo.y].habilidad==='p'){
+                                vida=vida-20;
+                            }
+                            if(vida<=0){
+                                vidas=vidas-1;
                                 var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                                 matriz[temx][tempy]=vacio;
                                 pintarPantalla();
+                                imprimirMatrizLogica();
+                                alert("Te quedan "+vidas+" vidas");
+                                iniciarJuego();
+                                vida=100;
+                                document.getElementById("t_vidas").innerHTML=vidas;
+                            }
+                            if(vidas===0){
+                                var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                                matriz[temx][tempy]=vacio;
+                                pintarPantalla();
+                                imprimirMatrizLogica();
                                 document.getElementById("t_vidas").innerHTML=vidas;
                                 var canvas = document.getElementById("myCanvas");
                                 var ctx = canvas.getContext("2d");
                                 ctx.fillText("Juego perdido",50,50);
-                                terminoPartida();
                             }
-                            else{
-                                matriz[temx][tempy].vidas=vidas;
+                            if(vidas>0 && bandera===true){
                                 var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                                 matriz[temx][tempy]=vacio;
                                 pintarPantalla();
+                                imprimirMatrizLogica();
                                 alert("Te quedan "+vidas+" vidas");
                                 iniciarJuego();
                                 document.getElementById("t_vidas").innerHTML=vidas;
                             }
+                            document.getElementById("t_vida").innerHTML=vida;
                         }
                     } if(bleft){
                         var temx=enemigo.x;
                         var tempy=enemigo.y-1;
+                        var bandera=false;
                         while(matriz[temx][tempy].nombre==='va'){
-                            var temp_bala=new Bala('b',img_bala_down);
+                            var temp_bala=new Bala('b',img_bala_left);
                             matriz[temx][tempy]=temp_bala;
                             //doDelay(10);
-                            temx=temx+1;
+                            tempy=tempy-1;
                         }
                         limpiarBalas();
                         pintarPantalla();
                         if(validarDisparoEnemigo(temx,tempy)){
-                            //vida=vida-20;
-                            vidas=vidas-1;
-                            if(vidas===0){
-                                matriz[temx][tempy].vidas=vidas;
+                            if(matriz[enemigo.x][enemigo.y].habilidad==='a'){
+                                vidas=vidas-1;
+                                bandera=true;
+                            }
+                            if(matriz[enemigo.x][enemigo.y].habilidad==='m'){
+                                vida=vida-50;
+                            }
+                            if(matriz[enemigo.x][enemigo.y].habilidad==='p'){
+                                vida=vida-20;
+                            }
+                            if(vida<=0){
+                                vidas=vidas-1;
                                 var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                                 matriz[temx][tempy]=vacio;
                                 pintarPantalla();
+                                imprimirMatrizLogica();
+                                alert("Te quedan "+vidas+" vidas");
+                                iniciarJuego();
+                                vida=100;
+                                document.getElementById("t_vidas").innerHTML=vidas;
+                            }
+                            if(vidas===0){
+                                var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                                matriz[temx][tempy]=vacio;
+                                pintarPantalla();
+                                imprimirMatrizLogica();
                                 document.getElementById("t_vidas").innerHTML=vidas;
                                 var canvas = document.getElementById("myCanvas");
                                 var ctx = canvas.getContext("2d");
                                 ctx.fillText("Juego perdido",50,50);
                             }
-                            else{
-                                matriz[temx][tempy].vidas=vidas;
+                            if(vidas>0 && bandera===true){
                                 var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                                 matriz[temx][tempy]=vacio;
                                 pintarPantalla();
+                                imprimirMatrizLogica();
                                 alert("Te quedan "+vidas+" vidas");
                                 iniciarJuego();
                                 document.getElementById("t_vidas").innerHTML=vidas;
                             }
+                            document.getElementById("t_vida").innerHTML=vida;
                         }
                     }if(brigth){
                         var temx=enemigo.x;
                         var tempy=enemigo.y+1;
+                        var bandera=false;
                         while(matriz[temx][tempy].nombre==='va'){
-                            var temp_bala=new Bala('b',img_bala_down);
+                            var temp_bala=new Bala('b',img_bala_right);
                             matriz[temx][tempy]=temp_bala;
                             //doDelay(10);
-                            temx=temx+1;
+                            tempy=tempy+1;
                         }
                         limpiarBalas();
                         pintarPantalla();
                         if(validarDisparoEnemigo(temx,tempy)){
-                            //vida=vida-20;
-                            vidas=vidas-1;
-                            if(vidas===0){
-                                matriz[temx][tempy].vidas=vidas;
+                            if(matriz[enemigo.x][enemigo.y].habilidad==='a'){
+                                vidas=vidas-1;
+                                bandera=true;
+                            }
+                            if(matriz[enemigo.x][enemigo.y].habilidad==='m'){
+                                vida=vida-50;
+                            }
+                            if(matriz[enemigo.x][enemigo.y].habilidad==='p'){
+                                vida=vida-20;
+                            }
+                            if(vida<=0){
+                                vidas=vidas-1;
                                 var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                                 matriz[temx][tempy]=vacio;
                                 pintarPantalla();
+                                imprimirMatrizLogica();
+                                alert("Te quedan "+vidas+" vidas");
+                                iniciarJuego();
+                                vida=100;
+                                document.getElementById("t_vidas").innerHTML=vidas;
+                            }
+                            if(vidas===0){
+                                var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
+                                matriz[temx][tempy]=vacio;
+                                pintarPantalla();
+                                imprimirMatrizLogica();
                                 document.getElementById("t_vidas").innerHTML=vidas;
                                 var canvas = document.getElementById("myCanvas");
                                 var ctx = canvas.getContext("2d");
                                 ctx.fillText("Juego perdido",50,50);
-                                alert("Juego perdido");
                             }
-                            else{
-                                matriz[temx][tempy].vidas=vidas;
+                            if(vidas>0 && bandera===true){
                                 var vacio=new Bloque_vacio('va',img_bloque_vacio,false);
                                 matriz[temx][tempy]=vacio;
                                 pintarPantalla();
+                                imprimirMatrizLogica();
                                 alert("Te quedan "+vidas+" vidas");
                                 iniciarJuego();
                                 document.getElementById("t_vidas").innerHTML=vidas;
                             }
+                            document.getElementById("t_vida").innerHTML=vida;
                         }
                     }
                 }
@@ -926,17 +999,17 @@ function colocarEnemigos(){
                 if(x===i && y===j){
                     var temp=generaRandom(1,3);
                     if(temp===1){
-                        var enemigo=new Tank1('t1',i,j,img_enemigo_down,'r',true);
+                        var enemigo=new Tank1('t1',i,j,img_enemigo_down,'p',true);
                         matriz[x][y]=enemigo;
                         listaEnemigos.push(enemigo);
                     }
                     if(temp===2){
-                        var enemigo=new Tank2('t2',i,j,img_enemigo_down,'c',true);
+                        var enemigo=new Tank2('t2',i,j,img_enemigo_down,'m',true);
                         matriz[x][y]=enemigo;
                         listaEnemigos.push(enemigo);
                     }
                     if(temp===3){
-                        var enemigo=new Tank3('t3',i,j,img_enemigo_down,'b',true);
+                        var enemigo=new Tank3('t3',i,j,img_enemigo_down,'a',true);
                         matriz[x][y]=enemigo;
                         listaEnemigos.push(enemigo);
                     }
@@ -952,6 +1025,7 @@ function colocarEnemigos(){
 function nivel2(){
     document.getElementById("t_vidas").innerHTML=vidas;
     document.getElementById("t_vida").innerHTML=vida;
+    document.getElementById("t_nivel").innerHTML=nivel;
     crearMurosMetal();
     colocarConcretoRandom();
     colocarObjetivos();
@@ -962,6 +1036,7 @@ function nivel2(){
 function nivel3(){
     document.getElementById("t_vidas").innerHTML=vidas;
     document.getElementById("t_vida").innerHTML=vida;
+    document.getElementById("t_nivel").innerHTML=nivel;
     crearMurosMetal();
     colocarConcretoRandom();
     colocarObjetivos();
@@ -1514,12 +1589,13 @@ function iniciarJuego(){
                 }
             }
         }
-    } document.onkeydown = anim;
+    }document.onkeydown = anim;
 }
 //Funcion que ejecuta el nivel 1
 function nivel1(){
     document.getElementById("t_vidas").innerHTML=vidas;
     document.getElementById("t_vida").innerHTML=vida;
+    document.getElementById("t_nivel").innerHTML=nivel;
     crearMurosMetal();
     colocarConcretoRandom();
     colocarObjetivos();

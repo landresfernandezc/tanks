@@ -15,8 +15,8 @@
       <file leaf-file-name="matriz_grafica.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/logica/matriz_grafica.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="1515" column="9" lean-forward="true" selection-start-line="1515" selection-start-column="9" selection-end-line="1515" selection-end-column="9" />
+            <state relative-caret-position="169">
+              <caret line="1021" column="43" lean-forward="true" selection-start-line="1021" selection-start-column="43" selection-end-line="1021" selection-end-column="43" />
               <folding>
                 <element signature="e#0#42#0" expanded="false" />
               </folding>
@@ -366,18 +366,18 @@
       <workItem from="1509810468135" duration="36328000" />
       <workItem from="1509903393132" duration="24240000" />
       <workItem from="1509980204437" duration="17887000" />
-      <workItem from="1510007185250" duration="7609000" />
+      <workItem from="1510007185250" duration="13300000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="88806000" />
+    <option name="totallyTimeSpent" value="94497000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1505295" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1096823" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -823,14 +823,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modelos/tank1.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-87">
@@ -838,6 +830,14 @@
           <folding>
             <element signature="n#!!doc;n#Tank1#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -860,8 +860,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/logica/matriz_grafica.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="1515" column="9" lean-forward="true" selection-start-line="1515" selection-start-column="9" selection-end-line="1515" selection-end-column="9" />
+        <state relative-caret-position="169">
+          <caret line="1021" column="43" lean-forward="true" selection-start-line="1021" selection-start-column="43" selection-end-line="1021" selection-end-column="43" />
           <folding>
             <element signature="e#0#42#0" expanded="false" />
           </folding>
