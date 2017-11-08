@@ -15,8 +15,8 @@
       <file leaf-file-name="matriz_grafica.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/logica/matriz_grafica.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="274" column="27" lean-forward="true" selection-start-line="274" selection-start-column="27" selection-end-line="274" selection-end-column="27" />
+            <state relative-caret-position="-171">
+              <caret line="1278" column="29" lean-forward="false" selection-start-line="1278" selection-start-column="29" selection-end-line="1278" selection-end-column="29" />
               <folding>
                 <element signature="e#0#42#0" expanded="false" />
               </folding>
@@ -402,12 +402,12 @@
       <workItem from="1510038294409" duration="1783000" />
       <workItem from="1510068473788" duration="243000" />
       <workItem from="1510068734964" duration="794000" />
-      <workItem from="1510093506849" duration="21008000" />
+      <workItem from="1510093506849" duration="22077000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="122417000" />
+    <option name="totallyTimeSpent" value="123486000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -918,8 +918,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/logica/matriz_grafica.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="274" column="27" lean-forward="true" selection-start-line="274" selection-start-column="27" selection-end-line="274" selection-end-column="27" />
+        <state relative-caret-position="-171">
+          <caret line="1278" column="29" lean-forward="false" selection-start-line="1278" selection-start-column="29" selection-end-line="1278" selection-end-column="29" />
           <folding>
             <element signature="e#0#42#0" expanded="false" />
           </folding>

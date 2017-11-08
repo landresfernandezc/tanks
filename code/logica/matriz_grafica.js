@@ -416,7 +416,6 @@ function MoverEnemigo(enemigo){
                             bdown=false;
                             brigth=true;
                             bleft=false;
-
                         }
                     }
                     pintarPantalla();
@@ -1092,16 +1091,6 @@ function MoverEnemigo(enemigo){
                                 vida=100;
                                 document.getElementById("t_vidas").innerHTML=vidas;
                             }
-                            if(vidas===0){
-                                var vacio=new Bloque('va',img_bloque_vacio,false);
-                                matriz[temx][tempy]=vacio;
-                                pintarPantalla();
-                                imprimirMatrizLogica();
-                                document.getElementById("t_vidas").innerHTML=vidas;
-                                var canvas = document.getElementById("myCanvas");
-                                var ctx = canvas.getContext("2d");
-                                ctx.fillText("Juego perdido",50,50);
-                            }
                             if(vidas>0 && bandera===true){
                                 var vacio=new Bloque('va',img_bloque_vacio,false);
                                 matriz[temx][tempy]=vacio;
@@ -1110,6 +1099,17 @@ function MoverEnemigo(enemigo){
                                 alert("Te quedan "+vidas+" vidas");
                                 iniciarJuego();
                                 document.getElementById("t_vidas").innerHTML=vidas;
+                            }
+                            if(vidas===0){
+                                var vacio=new Bloque('va',img_bloque_vacio,false);
+                                matriz[temx][tempy]=vacio;
+                                pintarPantalla();
+                                imprimirMatrizLogica();
+                                document.getElementById("t_vidas").innerHTML=vidas;
+                                var canvas = document.getElementById("myCanvas");
+                                var ctx = canvas.getContext("2d");
+                                alert("Juego perdido");
+                                window.location.href='index.html';
                             }
                             document.getElementById("t_vida").innerHTML=vida;
                         }
@@ -1147,16 +1147,6 @@ function MoverEnemigo(enemigo){
                                 vida=100;
                                 document.getElementById("t_vidas").innerHTML=vidas;
                             }
-                            if(vidas===0){
-                                var vacio=new Bloque('va',img_bloque_vacio,false);
-                                matriz[temx][tempy]=vacio;
-                                pintarPantalla();
-                                imprimirMatrizLogica();
-                                document.getElementById("t_vidas").innerHTML=vidas;
-                                var canvas = document.getElementById("myCanvas");
-                                var ctx = canvas.getContext("2d");
-                                ctx.fillText("Juego perdido",50,50);
-                            }
                             if(vidas>0 && bandera===true){
                                 var vacio=new Bloque('va',img_bloque_vacio,false);
                                 matriz[temx][tempy]=vacio;
@@ -1165,6 +1155,17 @@ function MoverEnemigo(enemigo){
                                 alert("Te quedan "+vidas+" vidas");
                                 iniciarJuego();
                                 document.getElementById("t_vidas").innerHTML=vidas;
+                            }
+                            if(vidas===0){
+                                var vacio=new Bloque('va',img_bloque_vacio,false);
+                                matriz[temx][tempy]=vacio;
+                                pintarPantalla();
+                                imprimirMatrizLogica();
+                                document.getElementById("t_vidas").innerHTML=vidas;
+                                var canvas = document.getElementById("myCanvas");
+                                var ctx = canvas.getContext("2d");
+                                alert("Juego perdido");
+                                window.location.href='index.html';
                             }
                             document.getElementById("t_vida").innerHTML=vida;
                         }
@@ -1202,16 +1203,6 @@ function MoverEnemigo(enemigo){
                                 vida=100;
                                 document.getElementById("t_vidas").innerHTML=vidas;
                             }
-                            if(vidas===0){
-                                var vacio=new Bloque('va',img_bloque_vacio,false);
-                                matriz[temx][tempy]=vacio;
-                                pintarPantalla();
-                                imprimirMatrizLogica();
-                                document.getElementById("t_vidas").innerHTML=vidas;
-                                var canvas = document.getElementById("myCanvas");
-                                var ctx = canvas.getContext("2d");
-                                ctx.fillText("Juego perdido",50,50);
-                            }
                             if(vidas>0 && bandera===true){
                                 var vacio=new Bloque('va',img_bloque_vacio,false);
                                 matriz[temx][tempy]=vacio;
@@ -1220,6 +1211,17 @@ function MoverEnemigo(enemigo){
                                 alert("Te quedan "+vidas+" vidas");
                                 iniciarJuego();
                                 document.getElementById("t_vidas").innerHTML=vidas;
+                            }
+                            if(vidas===0){
+                                var vacio=new Bloque('va',img_bloque_vacio,false);
+                                matriz[temx][tempy]=vacio;
+                                pintarPantalla();
+                                imprimirMatrizLogica();
+                                document.getElementById("t_vidas").innerHTML=vidas;
+                                var canvas = document.getElementById("myCanvas");
+                                var ctx = canvas.getContext("2d");
+                                alert("Juego perdido");
+                                window.location.href='index.html';
                             }
                             document.getElementById("t_vida").innerHTML=vida;
                         }
@@ -1256,6 +1258,14 @@ function MoverEnemigo(enemigo){
                                 vida=100;
                                 document.getElementById("t_vidas").innerHTML=vidas;
                             }
+                            if(vidas>0 && bandera===true){
+                                var vacio=new Bloque('va',img_bloque_vacio,false);
+                                matriz[temx][tempy]=vacio;
+                                pintarPantalla();
+                                alert("Te quedan "+vidas+" vidas");
+                                iniciarJuego();
+                                document.getElementById("t_vidas").innerHTML=vidas;
+                            }
                             if(vidas===0){
                                 var vacio=new Bloque('va',img_bloque_vacio,false);
                                 matriz[temx][tempy]=vacio;
@@ -1264,16 +1274,8 @@ function MoverEnemigo(enemigo){
                                 document.getElementById("t_vidas").innerHTML=vidas;
                                 var canvas = document.getElementById("myCanvas");
                                 var ctx = canvas.getContext("2d");
-                                ctx.fillText("Juego perdido",50,50);
-                            }
-                            if(vidas>0 && bandera===true){
-                                var vacio=new Bloque('va',img_bloque_vacio,false);
-                                matriz[temx][tempy]=vacio;
-                                pintarPantalla();
-                                imprimirMatrizLogica();
-                                alert("Te quedan "+vidas+" vidas");
-                                iniciarJuego();
-                                document.getElementById("t_vidas").innerHTML=vidas;
+                                alert("Juego perdido");
+                                window.location.href='index.html';
                             }
                             document.getElementById("t_vida").innerHTML=vida;
                         }
