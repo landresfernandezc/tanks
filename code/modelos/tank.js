@@ -1,29 +1,29 @@
 /**
- * Created by Andres on 11/4/2017.
+ * Created by Andres on 11/8/2017.
  */
-class Tank2 extends Tank{
-    constructor(nombre, x, y, fondo, habilidad, vivo,velocidad) {
-        super(nombre, x, y, fondo, habilidad, vivo);
-        this._nombre = nombre;
+
+class Tank {
+    constructor(nombre,x, y, fondo, habilidad,vivo) {
+        this._nombre=nombre;
         this._x = x;
         this._y = y;
         this._fondo = fondo;
         this._habilidad = habilidad;
-        this._vivo = vivo;
-        this._velocidad=velocidad;
+        this._vivo=vivo;
     }
 
-    get velocidad() {
-        return this._velocidad;
+    get vivo() {
+        return this._vivo;
     }
 
-    set velocidad(value) {
-        this._velocidad = value;
+    set vivo(value) {
+        this._vivo = value;
     }
 
     get nombre() {
         return this._nombre;
     }
+
     set nombre(value) {
         this._nombre = value;
     }
@@ -60,11 +60,4 @@ class Tank2 extends Tank{
         this._habilidad = value;
     }
 
-    get vivo() {
-        return this._vivo;
-    }
-
-    set vivo(value) {
-        this._vivo = value;
-    }
 }

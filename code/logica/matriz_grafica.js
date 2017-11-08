@@ -5,6 +5,7 @@ var dimensiones=20;
 var objetivos_nucleo=1;
 var objetivos_torres=2;
 var enemigos=6;
+var enemigosAgregar=3;
 var cantidad_concreto=100;
 var matriz=new Array(dimensiones);
 var listaEnemigos=[];
@@ -1323,7 +1324,44 @@ function colocarEnemigos(){
         }
     }
     moverEnemigos();
-    timer=setTimeout(colocarEnemigos,30000);
+    timer=setTimeout(colocarMasEnemigos,30000);
+}
+//Funcion que se encarga de colocar los enemigos en el terreno de juego
+function colocarMasEnemigos(){
+    var contador=0;
+    while(contador!=enemigosAgregar){
+        var x=0;
+        var y=0;
+        while(matriz[x][y].nombre!='va'){
+            x=generaRandom(1,19);
+            y=generaRandom(1,19);
+        }
+        for (var i = 0; i < dimensiones; i++)
+        {
+            for (var j = 0; j < dimensiones; j++) {
+                if(x===i && y===j){
+                    var temp=generaRandom(1,3);
+                    if(temp===1){
+                        var enemigo=new Tank1('t1',i,j,img_enemigo_blindaje_down,'p',true,3);
+                        matriz[x][y]=enemigo;
+                        listaEnemigos.push(enemigo);
+                    }
+                    if(temp===2){
+                        var enemigo=new Tank2('t2',i,j,img_enemigo_rapido_down,'m',true,2);
+                        matriz[x][y]=enemigo;
+                        listaEnemigos.push(enemigo);
+                    }
+                    if(temp===3){
+                        var enemigo=new Tank3('t3',i,j,img_enemigo_invisible_down,'a',true,false);
+                        matriz[x][y]=enemigo;
+                        listaEnemigos.push(enemigo);
+                    }
+                    contador=contador+1;
+                }
+            }
+        }
+    }
+    moverEnemigos();
 }
 //Funcion que ejecuta el nivel 1
 function nivel2(){
@@ -1952,6 +1990,7 @@ function nivel1(){
     colocarConcretoRandom();
     colocarObjetivos();
     colocarEnemigos();
+    moverEnemigos();
     iniciarJuego();
 }
 function main(){
