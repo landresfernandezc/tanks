@@ -220,7 +220,7 @@ function heroeCerca(enemigo){
 //Funcion que se encarga de mover al enemigo
 function MoverEnemigo(enemigo){
         while(enemigo.vivo){
-            if(enemigo.nombre==='t1' || enemigo.nombre==='t3'){
+            if(enemigo.nombre==='t1' || enemigo.nombre==='t3'){//Hace que los tanques que no tienen poder de velocidad se muevan mas lento
                 Concurrent.Thread.sleep(1000);
             }
             var bleft=true;
@@ -230,67 +230,68 @@ function MoverEnemigo(enemigo){
             var movimiento=0;
             var x=enemigo.x;
             var y=enemigo.y;
-            if(matriz[enemigo.x-1][enemigo.y].nombre==='va' && matriz[enemigo.x][enemigo.y+1].nombre!='va'&& matriz[enemigo.x+1][enemigo.y].nombre!='va' && matriz[enemigo.x][enemigo.y-1].nombre!='va'){
-                if(matriz[x-1][y].nombre==='va'){
-                    enemigo.x=x-1;
-                    enemigo.y=y;
-                    var vacio=new Bloque('va',img_bloque_vacio,false);
-                    matriz[x][y]=vacio;
-                    enemigo.fondo=img_enemigo_up;
-                    matriz[x-1][y]=enemigo;
-                    bup=true;
-                    bdown=false;
-                    brigth=false;
-                    bleft=false;
-                    pintarPantalla();
+            if(enemigo.nombre==='t1' || enemigo.nombre==='t2'){
+                if(matriz[enemigo.x-1][enemigo.y].nombre==='va' && matriz[enemigo.x][enemigo.y+1].nombre!='va'&& matriz[enemigo.x+1][enemigo.y].nombre!='va' && matriz[enemigo.x][enemigo.y-1].nombre!='va'){
+                    if(matriz[x-1][y].nombre==='va'){
+                        enemigo.x=x-1;
+                        enemigo.y=y;
+                        var vacio=new Bloque('va',img_bloque_vacio,false);
+                        matriz[x][y]=vacio;
+                        enemigo.fondo=img_enemigo_up;
+                        matriz[x-1][y]=enemigo;
+                        bup=true;
+                        bdown=false;
+                        brigth=false;
+                        bleft=false;
+                        pintarPantalla();
+                    }
                 }
-            }
-            else if(matriz[enemigo.x-1][enemigo.y].nombre!='va' && matriz[enemigo.x][enemigo.y+1].nombre!='va'&& matriz[enemigo.x+1][enemigo.y].nombre==='va' && matriz[enemigo.x][enemigo.y-1].nombre!='va'){
-                if(matriz[x+1][y].nombre==='va'){
-                    enemigo.x=x+1;
-                    enemigo.y=y;
-                    var vacio=new Bloque('va',img_bloque_vacio,false);
-                    matriz[x][y]=vacio;
-                    enemigo.fondo=img_enemigo_up;
-                    matriz[x+1][y]=enemigo;
-                    bup=false;
-                    bdown=true;
-                    brigth=false;
-                    bleft=false;
-                    pintarPantalla();
+                else if(matriz[enemigo.x-1][enemigo.y].nombre!='va' && matriz[enemigo.x][enemigo.y+1].nombre!='va'&& matriz[enemigo.x+1][enemigo.y].nombre==='va' && matriz[enemigo.x][enemigo.y-1].nombre!='va'){
+                    if(matriz[x+1][y].nombre==='va'){
+                        enemigo.x=x+1;
+                        enemigo.y=y;
+                        var vacio=new Bloque('va',img_bloque_vacio,false);
+                        matriz[x][y]=vacio;
+                        enemigo.fondo=img_enemigo_up;
+                        matriz[x+1][y]=enemigo;
+                        bup=false;
+                        bdown=true;
+                        brigth=false;
+                        bleft=false;
+                        pintarPantalla();
+                    }
                 }
-            }
-            else if(matriz[enemigo.x-1][enemigo.y].nombre!='va' && matriz[enemigo.x][enemigo.y+1].nombre==='va'&& matriz[enemigo.x+1][enemigo.y].nombre!='va' && matriz[enemigo.x][enemigo.y-1].nombre!='va'){
-                if(matriz[x][y+1].nombre==='va'){
-                    enemigo.x=x;
-                    enemigo.y=y+1;
-                    var vacio=new Bloque('va',img_bloque_vacio,false);
-                    matriz[x][y]=vacio;
-                    enemigo.fondo=img_enemigo_right;
-                    matriz[x][y+1]=enemigo;
-                    bup=false;
-                    bdown=false;
-                    brigth=true;
-                    bleft=false;
-                    pintarPantalla();
+                else if(matriz[enemigo.x-1][enemigo.y].nombre!='va' && matriz[enemigo.x][enemigo.y+1].nombre==='va'&& matriz[enemigo.x+1][enemigo.y].nombre!='va' && matriz[enemigo.x][enemigo.y-1].nombre!='va'){
+                    if(matriz[x][y+1].nombre==='va'){
+                        enemigo.x=x;
+                        enemigo.y=y+1;
+                        var vacio=new Bloque('va',img_bloque_vacio,false);
+                        matriz[x][y]=vacio;
+                        enemigo.fondo=img_enemigo_right;
+                        matriz[x][y+1]=enemigo;
+                        bup=false;
+                        bdown=false;
+                        brigth=true;
+                        bleft=false;
+                        pintarPantalla();
+                    }
                 }
-            }
-            else if(matriz[enemigo.x-1][enemigo.y].nombre!='va' && matriz[enemigo.x][enemigo.y+1].nombre!='va'&& matriz[enemigo.x+1][enemigo.y].nombre!='va' && matriz[enemigo.x][enemigo.y-1].nombre==='va'){
-                if(matriz[x][y-1].nombre==='va'){
-                    enemigo.x=x;
-                    enemigo.y=y-1;
-                    var vacio=new Bloque('va',img_bloque_vacio,false);
-                    matriz[x][y]=vacio;
-                    enemigo.fondo=img_enemigo_left;
-                    matriz[x][y-1]=enemigo;
-                    bup=false;
-                    bdown=false;
-                    brigth=false;
-                    bleft=true;
-                    pintarPantalla();
+                else if(matriz[enemigo.x-1][enemigo.y].nombre!='va' && matriz[enemigo.x][enemigo.y+1].nombre!='va'&& matriz[enemigo.x+1][enemigo.y].nombre!='va' && matriz[enemigo.x][enemigo.y-1].nombre==='va'){
+                    if(matriz[x][y-1].nombre==='va'){
+                        enemigo.x=x;
+                        enemigo.y=y-1;
+                        var vacio=new Bloque('va',img_bloque_vacio,false);
+                        matriz[x][y]=vacio;
+                        enemigo.fondo=img_enemigo_left;
+                        matriz[x][y-1]=enemigo;
+                        bup=false;
+                        bdown=false;
+                        brigth=false;
+                        bleft=true;
+                        pintarPantalla();
+                    }
                 }
-            }
-            else if(matriz[enemigo.x-1][enemigo.y].nombre==='va' && matriz[enemigo.x][enemigo.y+1].nombre==='va'&& matriz[enemigo.x+1][enemigo.y].nombre!='va' && matriz[enemigo.x][enemigo.y-1].nombre!='va'){
+                else if(matriz[enemigo.x-1][enemigo.y].nombre==='va' && matriz[enemigo.x][enemigo.y+1].nombre==='va'&& matriz[enemigo.x+1][enemigo.y].nombre!='va' && matriz[enemigo.x][enemigo.y-1].nombre!='va'){
                     movimiento=generaRandom(1,2);
                     if(movimiento===1){
                         if(matriz[x-1][y].nombre==='va'){
@@ -323,8 +324,8 @@ function MoverEnemigo(enemigo){
                         }
                     }
                     pintarPantalla();
-            }
-            else if(matriz[enemigo.x+1][enemigo.y].nombre==='va' && matriz[enemigo.x][enemigo.y-1].nombre==='va' && matriz[enemigo.x-1][enemigo.y].nombre!='va' && matriz[enemigo.x][enemigo.y+1].nombre!='va'){
+                }
+                else if(matriz[enemigo.x+1][enemigo.y].nombre==='va' && matriz[enemigo.x][enemigo.y-1].nombre==='va' && matriz[enemigo.x-1][enemigo.y].nombre!='va' && matriz[enemigo.x][enemigo.y+1].nombre!='va'){
                     movimiento=generaRandom(1,2);
                     if(movimiento===1){
                         if(matriz[x+1][y].nombre==='va'){
@@ -355,8 +356,8 @@ function MoverEnemigo(enemigo){
                         }
                     }
                     pintarPantalla();
-            }
-            else if(matriz[enemigo.x+1][enemigo.y].nombre==='va' && matriz[enemigo.x-1][enemigo.y].nombre==='va'&&matriz[enemigo.x][enemigo.y+1].nombre!='va' && matriz[enemigo.x][enemigo.y-1].nombre!='va'){
+                }
+                else if(matriz[enemigo.x+1][enemigo.y].nombre==='va' && matriz[enemigo.x-1][enemigo.y].nombre==='va'&&matriz[enemigo.x][enemigo.y+1].nombre!='va' && matriz[enemigo.x][enemigo.y-1].nombre!='va'){
                     movimiento=generaRandom(1,2);
                     if(movimiento===1){
                         if(matriz[x+1][y].nombre==='va'){
@@ -389,8 +390,8 @@ function MoverEnemigo(enemigo){
                         }
                     }
                     pintarPantalla();
-            }
-            else if(matriz[enemigo.x][enemigo.y+1].nombre==='va' && matriz[enemigo.x][enemigo.y-1].nombre==='va'&&matriz[enemigo.x+1][enemigo.y].nombre!='va' && matriz[enemigo.x-1][enemigo.y].nombre!='va'){
+                }
+                else if(matriz[enemigo.x][enemigo.y+1].nombre==='va' && matriz[enemigo.x][enemigo.y-1].nombre==='va'&&matriz[enemigo.x+1][enemigo.y].nombre!='va' && matriz[enemigo.x-1][enemigo.y].nombre!='va'){
                     movimiento=generaRandom(1,2);
                     if(movimiento===1){
                         if(matriz[x][y+1].nombre==='va'){
@@ -423,10 +424,10 @@ function MoverEnemigo(enemigo){
                         }
                     }
                     pintarPantalla();
-               // }
-            }
-            else if(matriz[enemigo.x-1][enemigo.y].nombre==='va' && matriz[enemigo.x][enemigo.y-1].nombre==='va'&&matriz[enemigo.x][enemigo.y+1].nombre!='va' && matriz[enemigo.x+1][enemigo.y].nombre!='va'){
-               // while(matriz[x][y].nombre!='va'){
+                    // }
+                }
+                else if(matriz[enemigo.x-1][enemigo.y].nombre==='va' && matriz[enemigo.x][enemigo.y-1].nombre==='va'&&matriz[enemigo.x][enemigo.y+1].nombre!='va' && matriz[enemigo.x+1][enemigo.y].nombre!='va'){
+                    // while(matriz[x][y].nombre!='va'){
                     movimiento=generaRandom(1,2);
                     if(movimiento===1){
                         if(matriz[x-1][y].nombre==='va'){
@@ -459,9 +460,9 @@ function MoverEnemigo(enemigo){
                         }
                     }
                     pintarPantalla();
-            }
-            else if(matriz[enemigo.x+1][enemigo.y].nombre==='va' && matriz[enemigo.x][enemigo.y+1].nombre==='va'&&matriz[enemigo.x-1][enemigo.y].nombre!='va' && matriz[enemigo.x][enemigo.y-1].nombre!='va'){
-               // while(matriz[x][y].nombre!='va'){
+                }
+                else if(matriz[enemigo.x+1][enemigo.y].nombre==='va' && matriz[enemigo.x][enemigo.y+1].nombre==='va'&&matriz[enemigo.x-1][enemigo.y].nombre!='va' && matriz[enemigo.x][enemigo.y-1].nombre!='va'){
+                    // while(matriz[x][y].nombre!='va'){
                     movimiento=generaRandom(1,2);
                     if(movimiento===1){
                         if(matriz[x+1][y].nombre==='va'){
@@ -495,259 +496,380 @@ function MoverEnemigo(enemigo){
                     pintarPantalla();
                 }
                 //Validaciones de 3 opciones de moverse
-            else if(matriz[enemigo.x+1][enemigo.y].nombre==='va' && matriz[enemigo.x][enemigo.y+1].nombre==='va'&&matriz[enemigo.x-1][enemigo.y].nombre==='va' && matriz[enemigo.x][enemigo.y-1].nombre!='va'){
-                // while(matriz[x][y].nombre!='va'){
-                movimiento=generaRandom(1,3);
-                if(movimiento===1){
-                    if(matriz[x+1][y].nombre==='va'){
-                        enemigo.x=x+1;
-                        enemigo.y=y;
-                        var vacio=new Bloque('va',img_bloque_vacio,false);
-                        matriz[x][y]=vacio;
-                        enemigo.fondo=img_enemigo_down;
-                        matriz[x+1][y]=enemigo;
-                        bup=false;
-                        bdown=true;
-                        brigth=false;
-                        bleft=false;
+                else if(matriz[enemigo.x+1][enemigo.y].nombre==='va' && matriz[enemigo.x][enemigo.y+1].nombre==='va'&&matriz[enemigo.x-1][enemigo.y].nombre==='va' && matriz[enemigo.x][enemigo.y-1].nombre!='va'){
+                    // while(matriz[x][y].nombre!='va'){
+                    movimiento=generaRandom(1,3);
+                    if(movimiento===1){
+                        if(matriz[x+1][y].nombre==='va'){
+                            enemigo.x=x+1;
+                            enemigo.y=y;
+                            var vacio=new Bloque('va',img_bloque_vacio,false);
+                            matriz[x][y]=vacio;
+                            enemigo.fondo=img_enemigo_down;
+                            matriz[x+1][y]=enemigo;
+                            bup=false;
+                            bdown=true;
+                            brigth=false;
+                            bleft=false;
+                        }
                     }
-                }
-                if(movimiento===2){
-                    if(matriz[x][y+1].nombre==='va'){
-                        enemigo.x=x;
-                        enemigo.y=y+1;
-                        var vacio=new Bloque('va',img_bloque_vacio,false);
-                        matriz[x][y]=vacio;
-                        enemigo.fondo=img_enemigo_right;
-                        matriz[x][y+1]=enemigo;
-                        bup=false;
-                        bdown=false;
-                        brigth=true;
-                        bleft=false;
+                    if(movimiento===2){
+                        if(matriz[x][y+1].nombre==='va'){
+                            enemigo.x=x;
+                            enemigo.y=y+1;
+                            var vacio=new Bloque('va',img_bloque_vacio,false);
+                            matriz[x][y]=vacio;
+                            enemigo.fondo=img_enemigo_right;
+                            matriz[x][y+1]=enemigo;
+                            bup=false;
+                            bdown=false;
+                            brigth=true;
+                            bleft=false;
 
+                        }
                     }
-                }
-                if(movimiento===3){
-                    if(matriz[x-1][y].nombre==='va'){
-                        enemigo.x=x-1;
-                        enemigo.y=y;
-                        var vacio=new Bloque('va',img_bloque_vacio,false);
-                        matriz[x][y]=vacio;
-                        enemigo.fondo=img_enemigo_up;
-                        matriz[x-1][y]=enemigo;
-                        bup=true;
-                        bdown=false;
-                        brigth=false;
-                        bleft=false;
+                    if(movimiento===3){
+                        if(matriz[x-1][y].nombre==='va'){
+                            enemigo.x=x-1;
+                            enemigo.y=y;
+                            var vacio=new Bloque('va',img_bloque_vacio,false);
+                            matriz[x][y]=vacio;
+                            enemigo.fondo=img_enemigo_up;
+                            matriz[x-1][y]=enemigo;
+                            bup=true;
+                            bdown=false;
+                            brigth=false;
+                            bleft=false;
 
+                        }
                     }
+                    pintarPantalla();
                 }
-                pintarPantalla();
+                else if(matriz[enemigo.x+1][enemigo.y].nombre==='va' && matriz[enemigo.x][enemigo.y+1].nombre==='va'&&matriz[enemigo.x-1][enemigo.y].nombre!='va' && matriz[enemigo.x][enemigo.y-1].nombre==='va'){
+                    movimiento=generaRandom(1,3);
+                    if(movimiento===1){
+                        if(matriz[x+1][y].nombre==='va'){
+                            enemigo.x=x+1;
+                            enemigo.y=y;
+                            var vacio=new Bloque('va',img_bloque_vacio,false);
+                            matriz[x][y]=vacio;
+                            enemigo.fondo=img_enemigo_down;
+                            matriz[x+1][y]=enemigo;
+                            bup=false;
+                            bdown=true;
+                            brigth=false;
+                            bleft=false;
+
+                        }
+                    }
+                    if(movimiento===2){
+                        if(matriz[x][y+1].nombre==='va'){
+                            enemigo.x=x;
+                            enemigo.y=y+1;
+                            var vacio=new Bloque('va',img_bloque_vacio,false);
+                            matriz[x][y]=vacio;
+                            enemigo.fondo=img_enemigo_right;
+                            matriz[x][y+1]=enemigo;
+                            bup=false;
+                            bdown=false;
+                            brigth=true;
+                            bleft=false;
+
+                        }
+                    }
+                    if(movimiento===3){
+                        if(matriz[x][y-1].nombre==='va'){
+                            enemigo.x=x;
+                            enemigo.y=y-1;
+                            var vacio=new Bloque('va',img_bloque_vacio,false);
+                            matriz[x][y]=vacio;
+                            enemigo.fondo=img_enemigo_left;
+                            matriz[x][y-1]=enemigo;
+                            bup=false;
+                            bdown=false;
+                            brigth=false;
+                            bleft=true;
+                        }
+                    }
+                    pintarPantalla();
+                }
+                else if(matriz[enemigo.x+1][enemigo.y].nombre==='va' && matriz[enemigo.x][enemigo.y+1].nombre!='va'&&matriz[enemigo.x-1][enemigo.y].nombre==='va' && matriz[enemigo.x][enemigo.y-1].nombre==='va'){
+                    // while(matriz[x][y].nombre!='va'){
+                    movimiento=generaRandom(1,3);
+                    if(movimiento===1){
+                        if(matriz[x+1][y].nombre==='va'){
+                            enemigo.x=x+1;
+                            enemigo.y=y;
+                            var vacio=new Bloque('va',img_bloque_vacio,false);
+                            matriz[x][y]=vacio;
+                            enemigo.fondo=img_enemigo_down;
+                            matriz[x+1][y]=enemigo;
+                            bup=false;
+                            bdown=true;
+                            brigth=false;
+                            bleft=false;
+
+                        }
+                    }
+                    if(movimiento===2){
+                        if(matriz[x][y+1].nombre==='va'){
+                            enemigo.x=x;
+                            enemigo.y=y+1;
+                            var vacio=new Bloque('va',img_bloque_vacio,false);
+                            matriz[x][y]=vacio;
+                            enemigo.fondo=img_enemigo_right;
+                            matriz[x][y+1]=enemigo;
+                            bup=false;
+                            bdown=false;
+                            brigth=true;
+                            bleft=false;
+
+                        }
+                    }
+                    if(movimiento===3){
+                        if(matriz[x][y-1].nombre==='va'){
+                            enemigo.x=x;
+                            enemigo.y=y-1;
+                            var vacio=new Bloque('va',img_bloque_vacio,false);
+                            matriz[x][y]=vacio;
+                            enemigo.fondo=img_enemigo_left;
+                            matriz[x][y-1]=enemigo;
+                            bup=false;
+                            bdown=false;
+                            brigth=false;
+                            bleft=true;
+                        }
+                    }
+                    pintarPantalla();
+                }
+                else if(matriz[enemigo.x+1][enemigo.y].nombre!='va' && matriz[enemigo.x][enemigo.y+1].nombre==='va'&&matriz[enemigo.x-1][enemigo.y].nombre==='va' && matriz[enemigo.x][enemigo.y-1].nombre==='va'){
+                    // while(matriz[x][y].nombre!='va'){
+                    movimiento=generaRandom(1,3);
+                    if(movimiento===1){
+                        if(matriz[x-1][y].nombre==='va'){
+                            enemigo.x=x-1;
+                            enemigo.y=y;
+                            var vacio=new Bloque('va',img_bloque_vacio,false);
+                            matriz[x][y]=vacio;
+                            enemigo.fondo=img_enemigo_up;
+                            matriz[x-1][y]=enemigo;
+                            bup=true;
+                            bdown=false;
+                            brigth=false;
+                            bleft=false;
+                        }
+                    }
+                    if(movimiento===2){
+                        if(matriz[x][y+1].nombre==='va'){
+                            enemigo.x=x;
+                            enemigo.y=y+1;
+                            var vacio=new Bloque('va',img_bloque_vacio,false);
+                            matriz[x][y]=vacio;
+                            enemigo.fondo=img_enemigo_right;
+                            matriz[x][y+1]=enemigo;
+                            bup=false;
+                            bdown=false;
+                            brigth=true;
+                            bleft=false;
+
+                        }
+                    }
+                    if(movimiento===3){
+                        if(matriz[x][y-1].nombre==='va'){
+                            enemigo.x=x;
+                            enemigo.y=y-1;
+                            var vacio=new Bloque('va',img_bloque_vacio,false);
+                            matriz[x][y]=vacio;
+                            enemigo.fondo=img_enemigo_left;
+                            matriz[x][y-1]=enemigo;
+                            bup=false;
+                            bdown=false;
+                            brigth=false;
+                            bleft=true;
+                        }
+                    }
+                    pintarPantalla();
+                }
+                else if(matriz[enemigo.x+1][enemigo.y].nombre==='va' && matriz[enemigo.x][enemigo.y+1].nombre==='va'&&matriz[enemigo.x-1][enemigo.y].nombre==='va' && matriz[enemigo.x][enemigo.y-1].nombre==='va'){
+                    // while(matriz[x][y].nombre!='va'){
+                    movimiento=generaRandom(1,4);
+                    if(movimiento===1){
+                        if(matriz[x-1][y].nombre==='va'){
+                            enemigo.x=x-1;
+                            enemigo.y=y;
+                            var vacio=new Bloque('va',img_bloque_vacio,false);
+                            matriz[x][y]=vacio;
+                            enemigo.fondo=img_enemigo_up;
+                            matriz[x-1][y]=enemigo;
+                            bup=true;
+                            bdown=false;
+                            brigth=false;
+                            bleft=false;
+
+                        }
+                    }
+                    if(movimiento===2){
+                        if(matriz[x][y+1].nombre==='va'){
+                            enemigo.x=x;
+                            enemigo.y=y+1;
+                            var vacio=new Bloque('va',img_bloque_vacio,false);
+                            matriz[x][y]=vacio;
+                            enemigo.fondo=img_enemigo_right;
+                            matriz[x][y+1]=enemigo;
+                            bup=false;
+                            bdown=false;
+                            brigth=true;
+                            bleft=false;
+
+                        }
+                    }
+                    if(movimiento===3){
+                        if(matriz[x][y-1].nombre==='va'){
+                            enemigo.x=x;
+                            enemigo.y=y-1;
+                            var vacio=new Bloque('va',img_bloque_vacio,false);
+                            matriz[x][y]=vacio;
+                            enemigo.fondo=img_enemigo_left;
+                            matriz[x][y-1]=enemigo;
+                            bup=false;
+                            bdown=false;
+                            brigth=false;
+                            bleft=true;
+                        }
+                    }
+                    if(movimiento===4){
+                        if(matriz[x+1][y].nombre==='va'){
+                            enemigo.x=x+1;
+                            enemigo.y=y;
+                            var vacio=new Bloque('va',img_bloque_vacio,false);
+                            matriz[x][y]=vacio;
+                            enemigo.fondo=img_enemigo_down;
+                            matriz[x+1][y]=enemigo;
+                            bup=false;
+                            bdown=true;
+                            brigth=false;
+                            bleft=false;
+                        }
+                    }
+                    pintarPantalla();
+                }
             }
-            else if(matriz[enemigo.x+1][enemigo.y].nombre==='va' && matriz[enemigo.x][enemigo.y+1].nombre==='va'&&matriz[enemigo.x-1][enemigo.y].nombre!='va' && matriz[enemigo.x][enemigo.y-1].nombre==='va'){
-                movimiento=generaRandom(1,3);
-                if(movimiento===1){
-                    if(matriz[x+1][y].nombre==='va'){
-                        enemigo.x=x+1;
-                        enemigo.y=y;
-                        var vacio=new Bloque('va',img_bloque_vacio,false);
-                        matriz[x][y]=vacio;
-                        enemigo.fondo=img_enemigo_down;
-                        matriz[x+1][y]=enemigo;
-                        bup=false;
-                        bdown=true;
-                        brigth=false;
-                        bleft=false;
-
-                    }
-                }
-                if(movimiento===2){
-                    if(matriz[x][y+1].nombre==='va'){
-                        enemigo.x=x;
-                        enemigo.y=y+1;
-                        var vacio=new Bloque('va',img_bloque_vacio,false);
-                        matriz[x][y]=vacio;
-                        enemigo.fondo=img_enemigo_right;
-                        matriz[x][y+1]=enemigo;
-                        bup=false;
-                        bdown=false;
-                        brigth=true;
-                        bleft=false;
-
-                    }
-                }
-                if(movimiento===3){
-                    if(matriz[x][y-1].nombre==='va'){
-                        enemigo.x=x;
-                        enemigo.y=y-1;
-                        var vacio=new Bloque('va',img_bloque_vacio,false);
-                        matriz[x][y]=vacio;
-                        enemigo.fondo=img_enemigo_left;
-                        matriz[x][y-1]=enemigo;
-                        bup=false;
-                        bdown=false;
-                        brigth=false;
-                        bleft=true;
-                    }
-                }
-                pintarPantalla();
-            }
-            else if(matriz[enemigo.x+1][enemigo.y].nombre==='va' && matriz[enemigo.x][enemigo.y+1].nombre!='va'&&matriz[enemigo.x-1][enemigo.y].nombre==='va' && matriz[enemigo.x][enemigo.y-1].nombre==='va'){
-                // while(matriz[x][y].nombre!='va'){
-                movimiento=generaRandom(1,3);
-                if(movimiento===1){
-                    if(matriz[x+1][y].nombre==='va'){
-                        enemigo.x=x+1;
-                        enemigo.y=y;
-                        var vacio=new Bloque('va',img_bloque_vacio,false);
-                        matriz[x][y]=vacio;
-                        enemigo.fondo=img_enemigo_down;
-                        matriz[x+1][y]=enemigo;
-                        bup=false;
-                        bdown=true;
-                        brigth=false;
-                        bleft=false;
-
-                    }
-                }
-                if(movimiento===2){
-                    if(matriz[x][y+1].nombre==='va'){
-                        enemigo.x=x;
-                        enemigo.y=y+1;
-                        var vacio=new Bloque('va',img_bloque_vacio,false);
-                        matriz[x][y]=vacio;
-                        enemigo.fondo=img_enemigo_right;
-                        matriz[x][y+1]=enemigo;
-                        bup=false;
-                        bdown=false;
-                        brigth=true;
-                        bleft=false;
-
-                    }
-                }
-                if(movimiento===3){
-                    if(matriz[x][y-1].nombre==='va'){
-                        enemigo.x=x;
-                        enemigo.y=y-1;
-                        var vacio=new Bloque('va',img_bloque_vacio,false);
-                        matriz[x][y]=vacio;
-                        enemigo.fondo=img_enemigo_left;
-                        matriz[x][y-1]=enemigo;
-                        bup=false;
-                        bdown=false;
-                        brigth=false;
-                        bleft=true;
-                    }
-                }
-                pintarPantalla();
-            }
-            else if(matriz[enemigo.x+1][enemigo.y].nombre!='va' && matriz[enemigo.x][enemigo.y+1].nombre==='va'&&matriz[enemigo.x-1][enemigo.y].nombre==='va' && matriz[enemigo.x][enemigo.y-1].nombre==='va'){
-                // while(matriz[x][y].nombre!='va'){
-                movimiento=generaRandom(1,3);
-                if(movimiento===1){
-                    if(matriz[x-1][y].nombre==='va'){
-                        enemigo.x=x-1;
-                        enemigo.y=y;
-                        var vacio=new Bloque('va',img_bloque_vacio,false);
-                        matriz[x][y]=vacio;
-                        enemigo.fondo=img_enemigo_up;
-                        matriz[x-1][y]=enemigo;
-                        bup=true;
-                        bdown=false;
-                        brigth=false;
-                        bleft=false;
-                    }
-                }
-                if(movimiento===2){
-                    if(matriz[x][y+1].nombre==='va'){
-                        enemigo.x=x;
-                        enemigo.y=y+1;
-                        var vacio=new Bloque('va',img_bloque_vacio,false);
-                        matriz[x][y]=vacio;
-                        enemigo.fondo=img_enemigo_right;
-                        matriz[x][y+1]=enemigo;
-                        bup=false;
-                        bdown=false;
-                        brigth=true;
-                        bleft=false;
-
-                    }
-                }
-                if(movimiento===3){
-                    if(matriz[x][y-1].nombre==='va'){
-                        enemigo.x=x;
-                        enemigo.y=y-1;
-                        var vacio=new Bloque('va',img_bloque_vacio,false);
-                        matriz[x][y]=vacio;
-                        enemigo.fondo=img_enemigo_left;
-                        matriz[x][y-1]=enemigo;
-                        bup=false;
-                        bdown=false;
-                        brigth=false;
-                        bleft=true;
-                    }
-                }
-                pintarPantalla();
-            }
-            else if(matriz[enemigo.x+1][enemigo.y].nombre==='va' && matriz[enemigo.x][enemigo.y+1].nombre==='va'&&matriz[enemigo.x-1][enemigo.y].nombre==='va' && matriz[enemigo.x][enemigo.y-1].nombre==='va'){
-                // while(matriz[x][y].nombre!='va'){
+            if(enemigo.nombre==='t3'){//Invisivilidad del heroe
                 movimiento=generaRandom(1,4);
                 if(movimiento===1){
-                    if(matriz[x-1][y].nombre==='va'){
-                        enemigo.x=x-1;
-                        enemigo.y=y;
-                        var vacio=new Bloque('va',img_bloque_vacio,false);
-                        matriz[x][y]=vacio;
-                        enemigo.fondo=img_enemigo_up;
-                        matriz[x-1][y]=enemigo;
-                        bup=true;
-                        bdown=false;
-                        brigth=false;
-                        bleft=false;
+                    if(matriz[x-1][y].nombre!='bm'){
+                        if(matriz[x-1][y].nombre==='bc'){
+                            enemigo.x=x-1;
+                            enemigo.y=y;
+                            var b_concreto=new Bloque('bc',img_bloque_concreto,false);
+                            matriz[x][y]=b_concreto;
+                            enemigo.fondo=img_enemigo_up;
+                            matriz[x-1][y]=enemigo;
+                            bup=true;
+                            bdown=false;
+                            brigth=false;
+                            bleft=false;
+                        }
+                        if(matriz[x-1][y].nombre==='va'){
+                            enemigo.x=x-1;
+                            enemigo.y=y;
+                            var vacio=new Bloque('va',img_bloque_vacio,false);
+                            matriz[x][y]=vacio;
+                            enemigo.fondo=img_enemigo_up;
+                            matriz[x-1][y]=enemigo;
+                            bup=true;
+                            bdown=false;
+                            brigth=false;
+                            bleft=false;
+                        }
 
                     }
                 }
                 if(movimiento===2){
-                    if(matriz[x][y+1].nombre==='va'){
-                        enemigo.x=x;
-                        enemigo.y=y+1;
-                        var vacio=new Bloque('va',img_bloque_vacio,false);
-                        matriz[x][y]=vacio;
-                        enemigo.fondo=img_enemigo_right;
-                        matriz[x][y+1]=enemigo;
-                        bup=false;
-                        bdown=false;
-                        brigth=true;
-                        bleft=false;
+                    if(matriz[x+1][y].nombre!='bm'){
+                        if(matriz[x+1][y].nombre==='bc'){
+                            enemigo.x=x+1;
+                            enemigo.y=y;
+                            var b_concreto=new Bloque('bc',img_bloque_concreto,false);
+                            matriz[x][y]=b_concreto;
+                            enemigo.fondo=img_enemigo_down;
+                            matriz[x+1][y]=enemigo;
+                            bup=false;
+                            bdown=true;
+                            brigth=false;
+                            bleft=false;
+                        }
+                        if(matriz[x+1][y].nombre==='va'){
+                            enemigo.x=x+1;
+                            enemigo.y=y;
+                            var vacio=new Bloque('va',img_bloque_vacio,false);
+                            matriz[x][y]=vacio;
+                            enemigo.fondo=img_enemigo_down;
+                            matriz[x+1][y]=enemigo;
+                            bup=false;
+                            bdown=true;
+                            brigth=false;
+                            bleft=false;
+                        }
 
                     }
                 }
                 if(movimiento===3){
-                    if(matriz[x][y-1].nombre==='va'){
-                        enemigo.x=x;
-                        enemigo.y=y-1;
-                        var vacio=new Bloque('va',img_bloque_vacio,false);
-                        matriz[x][y]=vacio;
-                        enemigo.fondo=img_enemigo_left;
-                        matriz[x][y-1]=enemigo;
-                        bup=false;
-                        bdown=false;
-                        brigth=false;
-                        bleft=true;
+                    if(matriz[x][y-1].nombre!='bm'){
+                        if(matriz[x][y-1].nombre==='bc'){
+                            enemigo.x=x;
+                            enemigo.y=y-1;
+                            var b_concreto=new Bloque('bc',img_bloque_concreto,false);
+                            matriz[x][y]=b_concreto;
+                            enemigo.fondo=img_enemigo_left;
+                            matriz[x][y-1]=enemigo;
+                            bup=false;
+                            bdown=false;
+                            brigth=false;
+                            bleft=true;
+                        }
+                        if(matriz[x][y-1].nombre==='va'){
+                            enemigo.x=x;
+                            enemigo.y=y-1;
+                            var vacio=new Bloque('va',img_bloque_vacio,false);
+                            matriz[x][y]=vacio;
+                            enemigo.fondo=img_enemigo_left;
+                            matriz[x][y-1]=enemigo;
+                            bup=false;
+                            bdown=false;
+                            brigth=false;
+                            bleft=true;
+                        }
+
                     }
                 }
                 if(movimiento===4){
-                    if(matriz[x+1][y].nombre==='va'){
-                        enemigo.x=x+1;
-                        enemigo.y=y;
-                        var vacio=new Bloque('va',img_bloque_vacio,false);
-                        matriz[x][y]=vacio;
-                        enemigo.fondo=img_enemigo_down;
-                        matriz[x+1][y]=enemigo;
-                        bup=false;
-                        bdown=true;
-                        brigth=false;
-                        bleft=false;
+                    if(matriz[x][y+1].nombre!='bm'){
+                        if(matriz[x][y+1].nombre==='bc'){
+                            enemigo.x=x;
+                            enemigo.y=y+1;
+                            var b_concreto=new Bloque('bc',img_bloque_concreto,false);
+                            matriz[x][y]=b_concreto;
+                            enemigo.fondo=img_enemigo_right;
+                            matriz[x][y+1]=enemigo;
+                            bup=false;
+                            bdown=false;
+                            brigth=true;
+                            bleft=false;
+                        }
+                        if(matriz[x][y+1].nombre==='va'){
+                            enemigo.x=x;
+                            enemigo.y=y+1;
+                            var vacio=new Bloque('va',img_bloque_vacio,false);
+                            matriz[x][y]=vacio;
+                            enemigo.fondo=img_enemigo_right;
+                            matriz[x][y+1]=enemigo;
+                            bup=false;
+                            bdown=false;
+                            brigth=true;
+                            bleft=false;
+                        }
+
                     }
                 }
                 pintarPantalla();
