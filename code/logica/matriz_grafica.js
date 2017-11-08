@@ -35,7 +35,7 @@ function crearMurosMetal(){
         matriz[x] = new Array(dimensiones);
         for (var y = 0; y < dimensiones; y++) {
             if(y===0 || x===0 || y===19 || x===19){
-                var b_metal=new Bloque_metal('bm',img_bloque_metal,true);
+                var b_metal=new Bloque('bm',img_bloque_metal,true);
                 matriz[x][y] = b_metal;
             }
             else{
@@ -64,7 +64,7 @@ function colocarConcretoRandom(){
         {
             for (var j = 0; j < dimensiones; j++) {
                     if(x===i && y===j){
-                        var b_concreto=new Bloque_concreto('bc',img_bloque_concreto,false);
+                        var b_concreto=new Bloque('bc',img_bloque_concreto,false);
                         matriz[x][y]=b_concreto;
                         contador=contador+1;
                 }
@@ -220,6 +220,9 @@ function heroeCerca(enemigo){
 //Funcion que se encarga de mover al enemigo
 function MoverEnemigo(enemigo){
         while(enemigo.vivo){
+            if(enemigo.nombre==='t1' || enemigo.nombre==='t3'){
+                Concurrent.Thread.sleep(1000);
+            }
             var bleft=true;
             var brigth=true;
             var bup=true;
@@ -653,7 +656,6 @@ function MoverEnemigo(enemigo){
                         bdown=false;
                         brigth=false;
                         bleft=false;
-
                     }
                 }
                 if(movimiento===2){
@@ -816,8 +818,8 @@ function MoverEnemigo(enemigo){
                             matriz[temx][tempy]=temp_bala;
                             temx=temx-1;
                         }
-                        limpiarBalas();
                         pintarPantalla();
+                        limpiarBalas();
                         if(validarDisparoEnemigo(temx,tempy)){
                             if(matriz[enemigo.x][enemigo.y].habilidad==='a'){
                                 vidas=vidas-1;
@@ -871,8 +873,8 @@ function MoverEnemigo(enemigo){
                             //doDelay(10);
                             tempy=tempy-1;
                         }
-                        limpiarBalas();
                         pintarPantalla();
+                        limpiarBalas();
                         if(validarDisparoEnemigo(temx,tempy)){
                             if(matriz[enemigo.x][enemigo.y].habilidad==='a'){
                                 vidas=vidas-1;
@@ -923,11 +925,10 @@ function MoverEnemigo(enemigo){
                         while(matriz[temx][tempy].nombre==='va'){
                             var temp_bala=new Bala('b',img_bala_right);
                             matriz[temx][tempy]=temp_bala;
-                            //doDelay(10);
                             tempy=tempy+1;
                         }
-                        limpiarBalas();
                         pintarPantalla();
+                        limpiarBalas();
                         if(validarDisparoEnemigo(temx,tempy)){
                             if(matriz[enemigo.x][enemigo.y].habilidad==='a'){
                                 vidas=vidas-1;
@@ -1083,7 +1084,6 @@ function iniciarJuego(){
                 brigth=true;
                 bup=false;
                 bdown=false;
-                imprimirMatrizLogica();
                 pintarPantalla();
             }else{
                 bleft=false;
@@ -1186,126 +1186,10 @@ function iniciarJuego(){
                 while(matriz[temx][tempy].nombre==='va'){
                     var temp_bala=new Bala('b',img_bala_left);
                     matriz[temx][tempy]=temp_bala;
-                    pintarPantalla();
                     tempy=tempy-1;
                 }
-                limpiarBalas();
                 pintarPantalla();
-                if(validarDisparo(temx,tempy)){
-                    if(matriz[temx][tempy].nombre==='t2'|| matriz[temx][tempy].nombre==='t3'){
-                        matriz[temx][tempy].vivo=false;
-                    }
-                    if(matriz[temx][tempy].nombre==='t1'){
-                        if(matriz[temx][tempy].blindaje===0){
-                            matriz[temx][tempy].vivo=false;
-                            var vacio=new Bloque('va',img_bloque_vacio,false);
-                            matriz[temx][tempy]=vacio;
-                            pintarPantalla();
-                        }
-                        else{
-                            matriz[temx][tempy].blindaje=matriz[temx][tempy].blindaje-1;
-                        }
-                    }
-                    if(matriz[temx][tempy].nombre==='opn'){
-                        objetivos_nucleo=objetivos_nucleo-1;
-                        var objetivos_primarios=objetivos_nucleo+objetivos_torres;
-                        if(objetivos_primarios===0){
-                            alert("Has ganado el nivel "+nivel);
-                            if(nivel===1){
-                                matarProcesos();
-                                dimensiones=20;
-                                objetivos_nucleo=1;
-                                objetivos_torres=2;
-                                enemigos=6;
-                                cantidad_concreto=100;
-                                matriz=new Array(dimensiones);
-                                listaEnemigos=[];
-                                vidas=3;
-                                vida=100;
-                                clearTimeout(timer);
-                                nivel=nivel+1;
-                                nivel2();
-                            }
-                            else if(nivel===2){
-                                matarProcesos();
-                                dimensiones=20;
-                                objetivos_nucleo=1;
-                                objetivos_torres=2;
-                                enemigos=6;
-                                cantidad_concreto=100;
-                                matriz=new Array(dimensiones);
-                                listaEnemigos=[];
-                                vidas=3;
-                                vida=100;
-                                clearTimeout(timer);
-                                nivel=nivel+1;
-                                nivel3();
-                            }
-                            else if(nivel===3){
-                                alert("Has ganado el juego felicidades");
-                                window.location.href='index.html';
-                            }
-                        }
-                    }
-                    if(matriz[temx][tempy].nombre==='opt'){
-                        objetivos_torres=objetivos_torres-1;
-                        var objetivos_primarios=objetivos_nucleo+objetivos_torres;
-                        if(objetivos_primarios===0){
-                            alert("Has ganado el nivel "+nivel);
-                            if(nivel===1){
-                                matarProcesos();
-                                dimensiones=20;
-                                objetivos_nucleo=1;
-                                objetivos_torres=2;
-                                enemigos=6;
-                                cantidad_concreto=100;
-                                matriz=new Array(dimensiones);
-                                listaEnemigos=[];
-                                vidas=3;
-                                vida=100;
-                                clearTimeout(timer);
-                                nivel=nivel+1;
-                                nivel2();
-                            }
-                            else if(nivel===2){
-                                matarProcesos();
-                                dimensiones=20;
-                                objetivos_nucleo=1;
-                                objetivos_torres=2;
-                                enemigos=6;
-                                cantidad_concreto=100;
-                                matriz=new Array(dimensiones);
-                                listaEnemigos=[];
-                                vidas=3;
-                                vida=100;
-                                clearTimeout(timer);
-                                nivel=nivel+1;
-                                nivel3();
-                            }
-                            else if(nivel===3){
-                                alert("Has ganado el juego felicidades");
-                                window.location.href='index.html';
-                            }
-                        }
-                    }
-                    if(matriz[temx][tempy].nombre!='t1'){
-                        var vacio=new Bloque('va',img_bloque_vacio,false);
-                        matriz[temx][tempy]=vacio;
-                        pintarPantalla();
-                    }
-                }
-            }
-            if(brigth){
-                var temx=px;
-                var tempy=py+1;
-                while(matriz[temx][tempy].nombre==='va'){
-                    var temp_bala=new Bala('b',img_bala_right);
-                    matriz[temx][tempy]=temp_bala;
-                    pintarPantalla();
-                    tempy=tempy+1;
-                }
                 limpiarBalas();
-                pintarPantalla();
                 if(validarDisparo(temx,tempy)){
                     if(matriz[temx][tempy].nombre==='t2'|| matriz[temx][tempy].nombre==='t3'){
                         matriz[temx][tempy].vivo=false;
@@ -1416,127 +1300,10 @@ function iniciarJuego(){
                 while(matriz[temx][tempy].nombre==='va'){
                     var temp_bala=new Bala('b',img_bala_up);
                     matriz[temx][tempy]=temp_bala;
-                    pintarPantalla();
                     temx=temx-1;
                 }
-                limpiarBalas();
                 pintarPantalla();
-                if(validarDisparo(temx,tempy)){
-                    if(matriz[temx][tempy].nombre==='t2'|| matriz[temx][tempy].nombre==='t3'){
-                        matriz[temx][tempy].vivo=false;
-                    }
-                    if(matriz[temx][tempy].nombre==='t1'){
-                        if(matriz[temx][tempy].blindaje===0){
-                            matriz[temx][tempy].vivo=false;
-                            var vacio=new Bloque('va',img_bloque_vacio,false);
-                            matriz[temx][tempy]=vacio;
-                            pintarPantalla();
-                        }
-                        else{
-                            matriz[temx][tempy].blindaje=matriz[temx][tempy].blindaje-1;
-                        }
-                    }
-                    if(matriz[temx][tempy].nombre==='opn'){
-                        objetivos_nucleo=objetivos_nucleo-1;
-                        var objetivos_primarios=objetivos_nucleo+objetivos_torres;
-                        if(objetivos_primarios===0){
-                            alert("Has ganado el nivel "+nivel);
-                            if(nivel===1){
-                                matarProcesos();
-                                dimensiones=20;
-                                objetivos_nucleo=1;
-                                objetivos_torres=2;
-                                enemigos=6;
-                                cantidad_concreto=100;
-                                matriz=new Array(dimensiones);
-                                listaEnemigos=[];
-                                vidas=3;
-                                vida=100;
-                                clearTimeout(timer);
-                                nivel=nivel+1;
-                                nivel2();
-                            }
-                            else if(nivel===2){
-                                matarProcesos();
-                                dimensiones=20;
-                                objetivos_nucleo=1;
-                                objetivos_torres=2;
-                                enemigos=6;
-                                cantidad_concreto=100;
-                                matriz=new Array(dimensiones);
-                                listaEnemigos=[];
-                                vidas=3;
-                                vida=100;
-                                clearTimeout(timer);
-                                nivel=nivel+1;
-                                nivel3();
-                            }
-                            else if(nivel===3){
-                                alert("Has ganado el juego felicidades");
-                                window.location.href='index.html';
-                            }
-                        }
-                    }
-                    if(matriz[temx][tempy].nombre==='opt'){
-                        objetivos_torres=objetivos_torres-1;
-                        var objetivos_primarios=objetivos_nucleo+objetivos_torres;
-                        if(objetivos_primarios===0){
-                            alert("Has ganado el nivel "+nivel);
-                            if(nivel===1){
-                                matarProcesos();
-                                dimensiones=20;
-                                objetivos_nucleo=1;
-                                objetivos_torres=2;
-                                enemigos=6;
-                                cantidad_concreto=100;
-                                matriz=new Array(dimensiones);
-                                listaEnemigos=[];
-                                vidas=3;
-                                vida=100;
-                                clearTimeout(timer);
-                                nivel=nivel+1;
-                                nivel2();
-                            }
-                            else if(nivel===2){
-                                matarProcesos();
-                                dimensiones=20;
-                                objetivos_nucleo=1;
-                                objetivos_torres=2;
-                                enemigos=6;
-                                cantidad_concreto=100;
-                                matriz=new Array(dimensiones);
-                                listaEnemigos=[];
-                                vidas=3;
-                                vida=100;
-                                clearTimeout(timer);
-                                nivel=nivel+1;
-                                nivel3();
-                            }
-                            else if(nivel===3){
-                                alert("Has ganado el juego felicidades");
-                                window.location.href='index.html';
-                            }
-                        }
-                    }
-                    if(matriz[temx][tempy].nombre!='t1'){
-                        var vacio=new Bloque('va',img_bloque_vacio,false);
-                        matriz[temx][tempy]=vacio;
-                        pintarPantalla();
-                    }
-                }
-            }
-            if(brigth){
-                var temx=px;
-                var tempy=py+1;
-                while(matriz[temx][tempy].nombre==='va'){
-                    var temp_bala=new Bala('b',img_bala_right);
-                    matriz[temx][tempy]=temp_bala;
-                    pintarPantalla();
-                    //doDelay(10);
-                    tempy=tempy+1;
-                }
                 limpiarBalas();
-                pintarPantalla();
                 if(validarDisparo(temx,tempy)){
                     if(matriz[temx][tempy].nombre==='t2'|| matriz[temx][tempy].nombre==='t3'){
                         matriz[temx][tempy].vivo=false;
@@ -1647,12 +1414,10 @@ function iniciarJuego(){
                 while(matriz[temx][tempy].nombre==='va'){
                     var temp_bala=new Bala('b',img_bala_down);
                     matriz[temx][tempy]=temp_bala;
-                    pintarPantalla();
-                    //doDelay(10);
                     temx=temx+1;
                 }
-                limpiarBalas();
                 pintarPantalla();
+                limpiarBalas();
                 if(validarDisparo(temx,tempy)){
                     if(matriz[temx][tempy].nombre==='t2'|| matriz[temx][tempy].nombre==='t3'){
                         matriz[temx][tempy].vivo=false;
@@ -1763,12 +1528,10 @@ function iniciarJuego(){
                 while(matriz[temx][tempy].nombre==='va'){
                     var temp_bala=new Bala('b',img_bala_right);
                     matriz[temx][tempy]=temp_bala;
-                    pintarPantalla();
-                    //doDelay(10);
                     tempy=tempy+1;
                 }
-                limpiarBalas();
                 pintarPantalla();
+                limpiarBalas();
                 if(validarDisparo(temx,tempy)){
                     if(matriz[temx][tempy].nombre==='t2'|| matriz[temx][tempy].nombre==='t3'){
                         matriz[temx][tempy].vivo=false;

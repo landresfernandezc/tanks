@@ -202,7 +202,6 @@ NAMESPACE = 'Util.Arrayize';
 
 var slice = Array.prototype.slice;
 
-
 function arrayize ( o ) {
     if ( !o ) return [];
     try {
@@ -215,8 +214,6 @@ function arrayize ( o ) {
         return r;
     }
 }
-
-
             return {
                 arrayize: arrayize
             };
