@@ -2,13 +2,11 @@
  * Created by Andres on 11/4/2017.
  */
 class Objetivo_primario{
-
     constructor(nombre, fondo, importancia) {
         this._nombre = nombre;
         this._fondo = fondo;
         this._importancia = importancia;
     }
-
     get nombre() {
         return this._nombre;
     }

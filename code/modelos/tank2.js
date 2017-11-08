@@ -1,8 +1,7 @@
 /**
  * Created by Andres on 11/4/2017.
  */
-class Tank2 extends Tank{
-
+class Tank2 extends Heroe{
     constructor(nombre, x, y, fondo, habilidad, vivo,velocidad) {
         super(nombre, x, y, fondo, habilidad, vivo);
         this._nombre = nombre;

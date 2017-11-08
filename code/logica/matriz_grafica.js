@@ -12,10 +12,21 @@ var vidas=3;
 var vida=100;
 var nivel=1;
 var timer;
-var img_enemigo_down='imagenes/tank_down.bmp';
-var img_enemigo_up='imagenes/tank_up.bmp';
-var img_enemigo_left='imagenes/tank_left.bmp';
-var img_enemigo_right='imagenes/tank_right.bmp';
+var img_enemigo_invisible_down='imagenes/tank_down.bmp';
+var img_enemigo_invisible_up='imagenes/tank_up.bmp';
+var img_enemigo_invisible_left='imagenes/tank_left.bmp';
+var img_enemigo_invisible_right='imagenes/tank_right.bmp';
+
+var img_enemigo_rapido_down='imagenes/tank1_down.bmp';
+var img_enemigo_rapido_up='imagenes/tank1_up.bmp';
+var img_enemigo_rapido_left='imagenes/tank1_left.bmp';
+var img_enemigo_rapido_right='imagenes/tank1_right.bmp';
+
+var img_enemigo_blindaje_down='imagenes/tank2_down.bmp';
+var img_enemigo_blindaje_up='imagenes/tank2_up.bmp';
+var img_enemigo_blindaje_left='imagenes/tank2_left.bmp';
+var img_enemigo_blindaje_right='imagenes/tank2_right.bmp';
+
 var img_bloque_metal='imagenes/bloque_metal.png';
 var img_bloque_vacio='imagenes/bloque_vacio.jpg';
 var img_bloque_concreto='imagenes/bloque_concreto.png';
@@ -161,12 +172,28 @@ function pintarPantalla(){
     for (var i = 0; i < dimensiones; i++)
     {
         for (var j = 0; j < dimensiones; j++){
-            var img = new Image();
-            img.src =matriz[i][j].fondo;
-            ctx.drawImage(img,j*30,i*30);
-            img.onload = function(){
+            if(matriz[i][j].nombre==='t3'){
+                if(matriz[i][j].invisible){
+                    //Si el tanque esta invisible no lo pinta
+                }
+                else{
+                    var img = new Image();
+                    img.src =matriz[i][j].fondo;
+                    ctx.drawImage(img,j*30,i*30);
+                    img.onload = function(){
+                        ctx.drawImage(img,j*30,i*30);
+                        ctx.restore();
+                    }
+                }
+            }
+            else{
+                var img = new Image();
+                img.src =matriz[i][j].fondo;
                 ctx.drawImage(img,j*30,i*30);
-                ctx.restore();
+                img.onload = function(){
+                    ctx.drawImage(img,j*30,i*30);
+                    ctx.restore();
+                }
             }
         }
     }
@@ -217,11 +244,32 @@ function heroeCerca(enemigo){
         return false;
     }
 }
+var etemporal;
+function cambiarEstado(){
+    if(etemporal.invisible){
+        etemporal.invisible=false;
+        matriz[etemporal.x][etemporal.y]=etemporal;
+        console.log(matriz[etemporal.x][etemporal.y]);
+    }
+    else{
+        etemporal.invisible=true;
+        matriz[etemporal.x][etemporal.y]=etemporal;
+        console.log(matriz[etemporal.x][etemporal.y]);
+    }
+}
 //Funcion que se encarga de mover al enemigo
 function MoverEnemigo(enemigo){
         while(enemigo.vivo){
-            if(enemigo.nombre==='t1' || enemigo.nombre==='t3'){//Hace que los tanques que no tienen poder de velocidad se muevan mas lento
+            if(enemigo.nombre==='t1'){//Hace que los tanques que no tienen poder de velocidad se muevan mas lento
                 Concurrent.Thread.sleep(1000);
+            }
+            if(enemigo.nombre==='t3'){//Invisivilidad del heroe
+                etemporal=enemigo;
+                cambiarEstado();
+                pintarPantalla();
+                Concurrent.Thread.sleep(500);
+                cambiarEstado();
+                pintarPantalla();
             }
             var bleft=true;
             var brigth=true;
@@ -230,14 +278,21 @@ function MoverEnemigo(enemigo){
             var movimiento=0;
             var x=enemigo.x;
             var y=enemigo.y;
-            if(enemigo.nombre==='t1' || enemigo.nombre==='t2'){
                 if(matriz[enemigo.x-1][enemigo.y].nombre==='va' && matriz[enemigo.x][enemigo.y+1].nombre!='va'&& matriz[enemigo.x+1][enemigo.y].nombre!='va' && matriz[enemigo.x][enemigo.y-1].nombre!='va'){
                     if(matriz[x-1][y].nombre==='va'){
                         enemigo.x=x-1;
                         enemigo.y=y;
                         var vacio=new Bloque('va',img_bloque_vacio,false);
                         matriz[x][y]=vacio;
-                        enemigo.fondo=img_enemigo_up;
+                        if(enemigo.nombre==='t1'){
+                            enemigo.fondo=img_enemigo_blindaje_up;
+                        }
+                        if(enemigo.nombre==='t2'){
+                            enemigo.fondo=img_enemigo_rapido_up;
+                        }
+                        if(enemigo.nombre==='t3'){
+                            enemigo.fondo=img_enemigo_invisible_up;
+                        }
                         matriz[x-1][y]=enemigo;
                         bup=true;
                         bdown=false;
@@ -252,7 +307,15 @@ function MoverEnemigo(enemigo){
                         enemigo.y=y;
                         var vacio=new Bloque('va',img_bloque_vacio,false);
                         matriz[x][y]=vacio;
-                        enemigo.fondo=img_enemigo_up;
+                        if(enemigo.nombre==='t1'){
+                            enemigo.fondo=img_enemigo_blindaje_down;
+                        }
+                        if(enemigo.nombre==='t2'){
+                            enemigo.fondo=img_enemigo_rapido_down;
+                        }
+                        if(enemigo.nombre==='t3'){
+                            enemigo.fondo=img_enemigo_invisible_down;
+                        }
                         matriz[x+1][y]=enemigo;
                         bup=false;
                         bdown=true;
@@ -267,7 +330,15 @@ function MoverEnemigo(enemigo){
                         enemigo.y=y+1;
                         var vacio=new Bloque('va',img_bloque_vacio,false);
                         matriz[x][y]=vacio;
-                        enemigo.fondo=img_enemigo_right;
+                        if(enemigo.nombre==='t1'){
+                            enemigo.fondo=img_enemigo_blindaje_right;
+                        }
+                        if(enemigo.nombre==='t2'){
+                            enemigo.fondo=img_enemigo_rapido_right;
+                        }
+                        if(enemigo.nombre==='t3'){
+                            enemigo.fondo=img_enemigo_invisible_right;
+                        }
                         matriz[x][y+1]=enemigo;
                         bup=false;
                         bdown=false;
@@ -282,7 +353,15 @@ function MoverEnemigo(enemigo){
                         enemigo.y=y-1;
                         var vacio=new Bloque('va',img_bloque_vacio,false);
                         matriz[x][y]=vacio;
-                        enemigo.fondo=img_enemigo_left;
+                        if(enemigo.nombre==='t1'){
+                            enemigo.fondo=img_enemigo_blindaje_left;
+                        }
+                        if(enemigo.nombre==='t2'){
+                            enemigo.fondo=img_enemigo_rapido_left;
+                        }
+                        if(enemigo.nombre==='t3'){
+                            enemigo.fondo=img_enemigo_invisible_left;
+                        }
                         matriz[x][y-1]=enemigo;
                         bup=false;
                         bdown=false;
@@ -299,7 +378,15 @@ function MoverEnemigo(enemigo){
                             enemigo.y=y;
                             var vacio=new Bloque('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
-                            enemigo.fondo=img_enemigo_up;
+                            if(enemigo.nombre==='t1'){
+                                enemigo.fondo=img_enemigo_blindaje_up;
+                            }
+                            if(enemigo.nombre==='t2'){
+                                enemigo.fondo=img_enemigo_rapido_up;
+                            }
+                            if(enemigo.nombre==='t3'){
+                                enemigo.fondo=img_enemigo_invisible_up;
+                            }
                             matriz[x-1][y]=enemigo;
                             bup=true;
                             bdown=false;
@@ -314,7 +401,15 @@ function MoverEnemigo(enemigo){
                             enemigo.y=y+1;
                             var vacio=new Bloque('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
-                            enemigo.fondo=img_enemigo_right;
+                            if(enemigo.nombre==='t1'){
+                                enemigo.fondo=img_enemigo_blindaje_right;
+                            }
+                            if(enemigo.nombre==='t2'){
+                                enemigo.fondo=img_enemigo_rapido_right;
+                            }
+                            if(enemigo.nombre==='t3'){
+                                enemigo.fondo=img_enemigo_invisible_right;
+                            }
                             matriz[x][y+1]=enemigo;
                             bup=false;
                             bdown=false;
@@ -333,7 +428,15 @@ function MoverEnemigo(enemigo){
                             enemigo.y=y;
                             var vacio=new Bloque('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
-                            enemigo.fondo=img_enemigo_down;
+                            if(enemigo.nombre==='t1'){
+                                enemigo.fondo=img_enemigo_blindaje_down;
+                            }
+                            if(enemigo.nombre==='t2'){
+                                enemigo.fondo=img_enemigo_rapido_down;
+                            }
+                            if(enemigo.nombre==='t3'){
+                                enemigo.fondo=img_enemigo_invisible_down;
+                            }
                             matriz[x+1][y]=enemigo;
                             bup=false;
                             bdown=true;
@@ -347,7 +450,15 @@ function MoverEnemigo(enemigo){
                             enemigo.y=y-1;
                             var vacio=new Bloque('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
-                            enemigo.fondo=img_enemigo_left;
+                            if(enemigo.nombre==='t1'){
+                                enemigo.fondo=img_enemigo_blindaje_left;
+                            }
+                            if(enemigo.nombre==='t2'){
+                                enemigo.fondo=img_enemigo_rapido_left;
+                            }
+                            if(enemigo.nombre==='t3'){
+                                enemigo.fondo=img_enemigo_invisible_left;
+                            }
                             matriz[x][y-1]=enemigo;
                             bup=false;
                             bdown=false;
@@ -365,7 +476,15 @@ function MoverEnemigo(enemigo){
                             enemigo.y=y;
                             var vacio=new Bloque('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
-                            enemigo.fondo=img_enemigo_down;
+                            if(enemigo.nombre==='t1'){
+                                enemigo.fondo=img_enemigo_blindaje_down;
+                            }
+                            if(enemigo.nombre==='t2'){
+                                enemigo.fondo=img_enemigo_rapido_down;
+                            }
+                            if(enemigo.nombre==='t3'){
+                                enemigo.fondo=img_enemigo_invisible_down;
+                            }
                             matriz[x+1][y]=enemigo;
                             bup=false;
                             bdown=true;
@@ -380,7 +499,15 @@ function MoverEnemigo(enemigo){
                             enemigo.y=y;
                             var vacio=new Bloque('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
-                            enemigo.fondo=img_enemigo_up;
+                            if(enemigo.nombre==='t1'){
+                                enemigo.fondo=img_enemigo_blindaje_up;
+                            }
+                            if(enemigo.nombre==='t2'){
+                                enemigo.fondo=img_enemigo_rapido_up;
+                            }
+                            if(enemigo.nombre==='t3'){
+                                enemigo.fondo=img_enemigo_invisible_up;
+                            }
                             matriz[x-1][y]=enemigo;
                             bup=true;
                             bdown=false;
@@ -399,7 +526,15 @@ function MoverEnemigo(enemigo){
                             enemigo.y=y+1;
                             var vacio=new Bloque('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
-                            enemigo.fondo=img_enemigo_right;
+                            if(enemigo.nombre==='t1'){
+                                enemigo.fondo=img_enemigo_blindaje_right;
+                            }
+                            if(enemigo.nombre==='t2'){
+                                enemigo.fondo=img_enemigo_rapido_right;
+                            }
+                            if(enemigo.nombre==='t3'){
+                                enemigo.fondo=img_enemigo_invisible_right;
+                            }
                             matriz[x][y+1]=enemigo;
                             bup=false;
                             bdown=false;
@@ -414,7 +549,15 @@ function MoverEnemigo(enemigo){
                             enemigo.y=y-1;
                             var vacio=new Bloque('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
-                            enemigo.fondo=img_enemigo_left;
+                            if(enemigo.nombre==='t1'){
+                                enemigo.fondo=img_enemigo_blindaje_left;
+                            }
+                            if(enemigo.nombre==='t2'){
+                                enemigo.fondo=img_enemigo_rapido_left;
+                            }
+                            if(enemigo.nombre==='t3'){
+                                enemigo.fondo=img_enemigo_invisible_left;
+                            }
                             matriz[x][y-1]=enemigo;
                             bup=false;
                             bdown=false;
@@ -435,7 +578,15 @@ function MoverEnemigo(enemigo){
                             enemigo.y=y;
                             var vacio=new Bloque('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
-                            enemigo.fondo=img_enemigo_up;
+                            if(enemigo.nombre==='t1'){
+                                enemigo.fondo=img_enemigo_blindaje_up;
+                            }
+                            if(enemigo.nombre==='t2'){
+                                enemigo.fondo=img_enemigo_rapido_up;
+                            }
+                            if(enemigo.nombre==='t3'){
+                                enemigo.fondo=img_enemigo_invisible_up;
+                            }
                             matriz[x-1][y]=enemigo;
                             bup=true;
                             bdown=false;
@@ -450,7 +601,15 @@ function MoverEnemigo(enemigo){
                             enemigo.y=y-1;
                             var vacio=new Bloque('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
-                            enemigo.fondo=img_enemigo_left;
+                            if(enemigo.nombre==='t1'){
+                                enemigo.fondo=img_enemigo_blindaje_left;
+                            }
+                            if(enemigo.nombre==='t2'){
+                                enemigo.fondo=img_enemigo_rapido_left;
+                            }
+                            if(enemigo.nombre==='t3'){
+                                enemigo.fondo=img_enemigo_invisible_left;
+                            }
                             matriz[x][y-1]=enemigo;
                             bup=false;
                             bdown=false;
@@ -470,7 +629,15 @@ function MoverEnemigo(enemigo){
                             enemigo.y=y;
                             var vacio=new Bloque('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
-                            enemigo.fondo=img_enemigo_down;
+                            if(enemigo.nombre==='t1'){
+                                enemigo.fondo=img_enemigo_blindaje_down;
+                            }
+                            if(enemigo.nombre==='t2'){
+                                enemigo.fondo=img_enemigo_rapido_down;
+                            }
+                            if(enemigo.nombre==='t3'){
+                                enemigo.fondo=img_enemigo_invisible_down;
+                            }
                             matriz[x+1][y]=enemigo;
                             bup=false;
                             bdown=true;
@@ -484,7 +651,15 @@ function MoverEnemigo(enemigo){
                             enemigo.y=y+1;
                             var vacio=new Bloque('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
-                            enemigo.fondo=img_enemigo_right;
+                            if(enemigo.nombre==='t1'){
+                                enemigo.fondo=img_enemigo_blindaje_right;
+                            }
+                            if(enemigo.nombre==='t2'){
+                                enemigo.fondo=img_enemigo_rapido_right;
+                            }
+                            if(enemigo.nombre==='t3'){
+                                enemigo.fondo=img_enemigo_invisible_right;
+                            }
                             matriz[x][y+1]=enemigo;
                             bup=false;
                             bdown=false;
@@ -505,7 +680,15 @@ function MoverEnemigo(enemigo){
                             enemigo.y=y;
                             var vacio=new Bloque('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
-                            enemigo.fondo=img_enemigo_down;
+                            if(enemigo.nombre==='t1'){
+                                enemigo.fondo=img_enemigo_blindaje_down;
+                            }
+                            if(enemigo.nombre==='t2'){
+                                enemigo.fondo=img_enemigo_rapido_down;
+                            }
+                            if(enemigo.nombre==='t3'){
+                                enemigo.fondo=img_enemigo_invisible_down;
+                            }
                             matriz[x+1][y]=enemigo;
                             bup=false;
                             bdown=true;
@@ -519,7 +702,15 @@ function MoverEnemigo(enemigo){
                             enemigo.y=y+1;
                             var vacio=new Bloque('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
-                            enemigo.fondo=img_enemigo_right;
+                            if(enemigo.nombre==='t1'){
+                                enemigo.fondo=img_enemigo_blindaje_right;
+                            }
+                            if(enemigo.nombre==='t2'){
+                                enemigo.fondo=img_enemigo_rapido_right;
+                            }
+                            if(enemigo.nombre==='t3'){
+                                enemigo.fondo=img_enemigo_invisible_right;
+                            }
                             matriz[x][y+1]=enemigo;
                             bup=false;
                             bdown=false;
@@ -534,7 +725,15 @@ function MoverEnemigo(enemigo){
                             enemigo.y=y;
                             var vacio=new Bloque('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
-                            enemigo.fondo=img_enemigo_up;
+                            if(enemigo.nombre==='t1'){
+                                enemigo.fondo=img_enemigo_blindaje_up;
+                            }
+                            if(enemigo.nombre==='t2'){
+                                enemigo.fondo=img_enemigo_rapido_up;
+                            }
+                            if(enemigo.nombre==='t3'){
+                                enemigo.fondo=img_enemigo_invisible_up;
+                            }
                             matriz[x-1][y]=enemigo;
                             bup=true;
                             bdown=false;
@@ -553,7 +752,15 @@ function MoverEnemigo(enemigo){
                             enemigo.y=y;
                             var vacio=new Bloque('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
-                            enemigo.fondo=img_enemigo_down;
+                            if(enemigo.nombre==='t1'){
+                                enemigo.fondo=img_enemigo_blindaje_down;
+                            }
+                            if(enemigo.nombre==='t2'){
+                                enemigo.fondo=img_enemigo_rapido_down;
+                            }
+                            if(enemigo.nombre==='t3'){
+                                enemigo.fondo=img_enemigo_invisible_down;
+                            }
                             matriz[x+1][y]=enemigo;
                             bup=false;
                             bdown=true;
@@ -568,7 +775,15 @@ function MoverEnemigo(enemigo){
                             enemigo.y=y+1;
                             var vacio=new Bloque('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
-                            enemigo.fondo=img_enemigo_right;
+                            if(enemigo.nombre==='t1'){
+                                enemigo.fondo=img_enemigo_blindaje_right;
+                            }
+                            if(enemigo.nombre==='t2'){
+                                enemigo.fondo=img_enemigo_rapido_right;
+                            }
+                            if(enemigo.nombre==='t3'){
+                                enemigo.fondo=img_enemigo_invisible_right;
+                            }
                             matriz[x][y+1]=enemigo;
                             bup=false;
                             bdown=false;
@@ -583,7 +798,15 @@ function MoverEnemigo(enemigo){
                             enemigo.y=y-1;
                             var vacio=new Bloque('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
-                            enemigo.fondo=img_enemigo_left;
+                            if(enemigo.nombre==='t1'){
+                                enemigo.fondo=img_enemigo_blindaje_left;
+                            }
+                            if(enemigo.nombre==='t2'){
+                                enemigo.fondo=img_enemigo_rapido_left;
+                            }
+                            if(enemigo.nombre==='t3'){
+                                enemigo.fondo=img_enemigo_invisible_left;
+                            }
                             matriz[x][y-1]=enemigo;
                             bup=false;
                             bdown=false;
@@ -602,7 +825,15 @@ function MoverEnemigo(enemigo){
                             enemigo.y=y;
                             var vacio=new Bloque('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
-                            enemigo.fondo=img_enemigo_down;
+                            if(enemigo.nombre==='t1'){
+                                enemigo.fondo=img_enemigo_blindaje_down;
+                            }
+                            if(enemigo.nombre==='t2'){
+                                enemigo.fondo=img_enemigo_rapido_down;
+                            }
+                            if(enemigo.nombre==='t3'){
+                                enemigo.fondo=img_enemigo_invisible_down;
+                            }
                             matriz[x+1][y]=enemigo;
                             bup=false;
                             bdown=true;
@@ -617,7 +848,15 @@ function MoverEnemigo(enemigo){
                             enemigo.y=y+1;
                             var vacio=new Bloque('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
-                            enemigo.fondo=img_enemigo_right;
+                            if(enemigo.nombre==='t1'){
+                                enemigo.fondo=img_enemigo_blindaje_right;
+                            }
+                            if(enemigo.nombre==='t2'){
+                                enemigo.fondo=img_enemigo_rapido_right;
+                            }
+                            if(enemigo.nombre==='t3'){
+                                enemigo.fondo=img_enemigo_invisible_right;
+                            }
                             matriz[x][y+1]=enemigo;
                             bup=false;
                             bdown=false;
@@ -632,7 +871,15 @@ function MoverEnemigo(enemigo){
                             enemigo.y=y-1;
                             var vacio=new Bloque('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
-                            enemigo.fondo=img_enemigo_left;
+                            if(enemigo.nombre==='t1'){
+                                enemigo.fondo=img_enemigo_blindaje_left;
+                            }
+                            if(enemigo.nombre==='t2'){
+                                enemigo.fondo=img_enemigo_rapido_left;
+                            }
+                            if(enemigo.nombre==='t3'){
+                                enemigo.fondo=img_enemigo_invisible_left;
+                            }
                             matriz[x][y-1]=enemigo;
                             bup=false;
                             bdown=false;
@@ -651,7 +898,15 @@ function MoverEnemigo(enemigo){
                             enemigo.y=y;
                             var vacio=new Bloque('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
-                            enemigo.fondo=img_enemigo_up;
+                            if(enemigo.nombre==='t1'){
+                                enemigo.fondo=img_enemigo_blindaje_up;
+                            }
+                            if(enemigo.nombre==='t2'){
+                                enemigo.fondo=img_enemigo_rapido_up;
+                            }
+                            if(enemigo.nombre==='t3'){
+                                enemigo.fondo=img_enemigo_invisible_up;
+                            }
                             matriz[x-1][y]=enemigo;
                             bup=true;
                             bdown=false;
@@ -665,7 +920,15 @@ function MoverEnemigo(enemigo){
                             enemigo.y=y+1;
                             var vacio=new Bloque('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
-                            enemigo.fondo=img_enemigo_right;
+                            if(enemigo.nombre==='t1'){
+                                enemigo.fondo=img_enemigo_blindaje_right;
+                            }
+                            if(enemigo.nombre==='t2'){
+                                enemigo.fondo=img_enemigo_rapido_right;
+                            }
+                            if(enemigo.nombre==='t3'){
+                                enemigo.fondo=img_enemigo_invisible_right;
+                            }
                             matriz[x][y+1]=enemigo;
                             bup=false;
                             bdown=false;
@@ -680,7 +943,15 @@ function MoverEnemigo(enemigo){
                             enemigo.y=y-1;
                             var vacio=new Bloque('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
-                            enemigo.fondo=img_enemigo_left;
+                            if(enemigo.nombre==='t1'){
+                                enemigo.fondo=img_enemigo_blindaje_left;
+                            }
+                            if(enemigo.nombre==='t2'){
+                                enemigo.fondo=img_enemigo_rapido_left;
+                            }
+                            if(enemigo.nombre==='t3'){
+                                enemigo.fondo=img_enemigo_invisible_left;
+                            }
                             matriz[x][y-1]=enemigo;
                             bup=false;
                             bdown=false;
@@ -699,7 +970,15 @@ function MoverEnemigo(enemigo){
                             enemigo.y=y;
                             var vacio=new Bloque('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
-                            enemigo.fondo=img_enemigo_up;
+                            if(enemigo.nombre==='t1'){
+                                enemigo.fondo=img_enemigo_blindaje_up;
+                            }
+                            if(enemigo.nombre==='t2'){
+                                enemigo.fondo=img_enemigo_rapido_up;
+                            }
+                            if(enemigo.nombre==='t3'){
+                                enemigo.fondo=img_enemigo_invisible_up;
+                            }
                             matriz[x-1][y]=enemigo;
                             bup=true;
                             bdown=false;
@@ -714,7 +993,15 @@ function MoverEnemigo(enemigo){
                             enemigo.y=y+1;
                             var vacio=new Bloque('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
-                            enemigo.fondo=img_enemigo_right;
+                            if(enemigo.nombre==='t1'){
+                                enemigo.fondo=img_enemigo_blindaje_right;
+                            }
+                            if(enemigo.nombre==='t2'){
+                                enemigo.fondo=img_enemigo_rapido_right;
+                            }
+                            if(enemigo.nombre==='t3'){
+                                enemigo.fondo=img_enemigo_invisible_right;
+                            }
                             matriz[x][y+1]=enemigo;
                             bup=false;
                             bdown=false;
@@ -729,7 +1016,15 @@ function MoverEnemigo(enemigo){
                             enemigo.y=y-1;
                             var vacio=new Bloque('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
-                            enemigo.fondo=img_enemigo_left;
+                            if(enemigo.nombre==='t1'){
+                                enemigo.fondo=img_enemigo_blindaje_left;
+                            }
+                            if(enemigo.nombre==='t2'){
+                                enemigo.fondo=img_enemigo_rapido_left;
+                            }
+                            if(enemigo.nombre==='t3'){
+                                enemigo.fondo=img_enemigo_invisible_left;
+                            }
                             matriz[x][y-1]=enemigo;
                             bup=false;
                             bdown=false;
@@ -743,7 +1038,15 @@ function MoverEnemigo(enemigo){
                             enemigo.y=y;
                             var vacio=new Bloque('va',img_bloque_vacio,false);
                             matriz[x][y]=vacio;
-                            enemigo.fondo=img_enemigo_down;
+                            if(enemigo.nombre==='t1'){
+                                enemigo.fondo=img_enemigo_blindaje_down;
+                            }
+                            if(enemigo.nombre==='t2'){
+                                enemigo.fondo=img_enemigo_rapido_down;
+                            }
+                            if(enemigo.nombre==='t3'){
+                                enemigo.fondo=img_enemigo_invisible_down;
+                            }
                             matriz[x+1][y]=enemigo;
                             bup=false;
                             bdown=true;
@@ -753,127 +1056,6 @@ function MoverEnemigo(enemigo){
                     }
                     pintarPantalla();
                 }
-            }
-            if(enemigo.nombre==='t3'){//Invisivilidad del heroe
-                movimiento=generaRandom(1,4);
-                if(movimiento===1){
-                    if(matriz[x-1][y].nombre!='bm'){
-                        if(matriz[x-1][y].nombre==='bc'){
-                            enemigo.x=x-1;
-                            enemigo.y=y;
-                            var b_concreto=new Bloque('bc',img_bloque_concreto,false);
-                            matriz[x][y]=b_concreto;
-                            enemigo.fondo=img_enemigo_up;
-                            matriz[x-1][y]=enemigo;
-                            bup=true;
-                            bdown=false;
-                            brigth=false;
-                            bleft=false;
-                        }
-                        if(matriz[x-1][y].nombre==='va'){
-                            enemigo.x=x-1;
-                            enemigo.y=y;
-                            var vacio=new Bloque('va',img_bloque_vacio,false);
-                            matriz[x][y]=vacio;
-                            enemigo.fondo=img_enemigo_up;
-                            matriz[x-1][y]=enemigo;
-                            bup=true;
-                            bdown=false;
-                            brigth=false;
-                            bleft=false;
-                        }
-
-                    }
-                }
-                if(movimiento===2){
-                    if(matriz[x+1][y].nombre!='bm'){
-                        if(matriz[x+1][y].nombre==='bc'){
-                            enemigo.x=x+1;
-                            enemigo.y=y;
-                            var b_concreto=new Bloque('bc',img_bloque_concreto,false);
-                            matriz[x][y]=b_concreto;
-                            enemigo.fondo=img_enemigo_down;
-                            matriz[x+1][y]=enemigo;
-                            bup=false;
-                            bdown=true;
-                            brigth=false;
-                            bleft=false;
-                        }
-                        if(matriz[x+1][y].nombre==='va'){
-                            enemigo.x=x+1;
-                            enemigo.y=y;
-                            var vacio=new Bloque('va',img_bloque_vacio,false);
-                            matriz[x][y]=vacio;
-                            enemigo.fondo=img_enemigo_down;
-                            matriz[x+1][y]=enemigo;
-                            bup=false;
-                            bdown=true;
-                            brigth=false;
-                            bleft=false;
-                        }
-
-                    }
-                }
-                if(movimiento===3){
-                    if(matriz[x][y-1].nombre!='bm'){
-                        if(matriz[x][y-1].nombre==='bc'){
-                            enemigo.x=x;
-                            enemigo.y=y-1;
-                            var b_concreto=new Bloque('bc',img_bloque_concreto,false);
-                            matriz[x][y]=b_concreto;
-                            enemigo.fondo=img_enemigo_left;
-                            matriz[x][y-1]=enemigo;
-                            bup=false;
-                            bdown=false;
-                            brigth=false;
-                            bleft=true;
-                        }
-                        if(matriz[x][y-1].nombre==='va'){
-                            enemigo.x=x;
-                            enemigo.y=y-1;
-                            var vacio=new Bloque('va',img_bloque_vacio,false);
-                            matriz[x][y]=vacio;
-                            enemigo.fondo=img_enemigo_left;
-                            matriz[x][y-1]=enemigo;
-                            bup=false;
-                            bdown=false;
-                            brigth=false;
-                            bleft=true;
-                        }
-
-                    }
-                }
-                if(movimiento===4){
-                    if(matriz[x][y+1].nombre!='bm'){
-                        if(matriz[x][y+1].nombre==='bc'){
-                            enemigo.x=x;
-                            enemigo.y=y+1;
-                            var b_concreto=new Bloque('bc',img_bloque_concreto,false);
-                            matriz[x][y]=b_concreto;
-                            enemigo.fondo=img_enemigo_right;
-                            matriz[x][y+1]=enemigo;
-                            bup=false;
-                            bdown=false;
-                            brigth=true;
-                            bleft=false;
-                        }
-                        if(matriz[x][y+1].nombre==='va'){
-                            enemigo.x=x;
-                            enemigo.y=y+1;
-                            var vacio=new Bloque('va',img_bloque_vacio,false);
-                            matriz[x][y]=vacio;
-                            enemigo.fondo=img_enemigo_right;
-                            matriz[x][y+1]=enemigo;
-                            bup=false;
-                            bdown=false;
-                            brigth=true;
-                            bleft=false;
-                        }
-
-                    }
-                }
-                pintarPantalla();
-            }
             if(existeHeroe()){
                 if(heroeCerca(enemigo)){
                     if(bdown){
@@ -1102,7 +1284,7 @@ function MoverEnemigo(enemigo){
 //Funcion que ejecuta todos los hilos con cada enemigo existente
 function moverEnemigos(){
         for(var x=0;x<listaEnemigos.length;x++){
-            Concurrent.Thread.create(MoverEnemigo, listaEnemigos[x]);
+            Concurrent.Thread.create(MoverEnemigo,listaEnemigos[x]);
         }
 }
 //Funcion que se encarga de colocar los enemigos en el terreno de juego
@@ -1121,17 +1303,17 @@ function colocarEnemigos(){
                 if(x===i && y===j){
                     var temp=generaRandom(1,3);
                     if(temp===1){
-                        var enemigo=new Tank1('t1',i,j,img_enemigo_down,'p',true,3);
+                        var enemigo=new Tank1('t1',i,j,img_enemigo_blindaje_down,'p',true,3);
                         matriz[x][y]=enemigo;
                         listaEnemigos.push(enemigo);
                     }
                     if(temp===2){
-                        var enemigo=new Tank2('t2',i,j,img_enemigo_down,'m',true,2);
+                        var enemigo=new Tank2('t2',i,j,img_enemigo_rapido_down,'m',true,2);
                         matriz[x][y]=enemigo;
                         listaEnemigos.push(enemigo);
                     }
                     if(temp===3){
-                        var enemigo=new Tank3('t3',i,j,img_enemigo_down,'a',true,0);
+                        var enemigo=new Tank3('t3',i,j,img_enemigo_invisible_down,'a',true,false);
                         matriz[x][y]=enemigo;
                         listaEnemigos.push(enemigo);
                     }
